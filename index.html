@@ -52,7 +52,7 @@
       function doPairing() {
          var mid = document.getElementById("mid").value;
          var tid = document.getElementById("tid").value;
-            console.log("Pairing mid: " + mit +tid);
+            console.log("Pairing mid: " + mid +tid);
          var iclient = new TYRO.IClientWithUI(apiKey, posProductInfo);
          iclient.pairTerminal(mid, tid, function (response) {
             if ("success" == response.status) {
