@@ -19,11 +19,11 @@
          // Only required because we are loading both iClient versions into the global namespace
          var TYROUI_SIMULATOR = TYRO;
       </script>
-      <script type="text/javascript" src="https://iclient.test.tyro.com/iclient-v1.js"></script>
+      <!-- <script type="text/javascript" src="https://iclient.test.tyro.com/iclient-v1.js"></script>
       <script type="text/javascript">
          // Only required because we are loading both iClient versions into the global namespace
          var CUSTOMUI_SIMULATOR = TYRO;
-      </script>
+      </script> -->
   
       <script type="text/javascript">
           var system = [TYROUI_SIMULATOR, CUSTOMUI_SIMULATOR];
@@ -218,7 +218,7 @@
              const mid = Number($("#mid").val());
              const tid = Number($("#tid").val());
      
-             const iClient = new system[0].IClient(apiKey, posProductInfo);
+             const iClient = new TYRO.IClient(apiKey, posProductInfo);
              iClient.pairTerminal(mid, tid, function(response) {
                console.log(response)
                  if ("success" === response.status) {
