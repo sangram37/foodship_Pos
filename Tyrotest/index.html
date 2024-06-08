@@ -214,9 +214,10 @@
          }
 
          function doPairing() {
+                    console.log('ssngaattatagag')
              const mid = Number($("#mid").val());
              const tid = Number($("#tid").val());
-             console.log(mid, tid)
+     
              const iClient = new system[0].IClient(apiKey, posProductInfo);
              iClient.pairTerminal(mid, tid, function(response) {
                console.log(response)
