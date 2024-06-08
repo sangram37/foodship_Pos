@@ -216,8 +216,10 @@
          function doPairing() {
              const mid = Number($("#mid").val());
              const tid = Number($("#tid").val());
-             const iClient = new system[1].IClient(apiKey, posProductInfo);
+             console.log(mid, tid)
+             const iClient = new system[0].IClient(apiKey, posProductInfo);
              iClient.pairTerminal(mid, tid, function(response) {
+               console.log(response)
                  if ("success" === response.status) {
                      $("#pair_result").text("Success: " + response.message);
                        let  params = {
