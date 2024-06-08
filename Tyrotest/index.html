@@ -24,15 +24,14 @@
          // Only required because we are loading both iClient versions into the global namespace
          var CUSTOMUI_SIMULATOR = TYRO;
       </script>
-      <script type="text/javascript" src="https://iclient.test.tyro.com/iclient-with-ui-v1.js"></script>
-      <script type="text/javascript" src="https://iclient.test.tyro.com/iclient-v1.js"></script>
+  
       <script type="text/javascript">
-         var system = [TYROUI_SIMULATOR, CUSTOMUI_SIMULATOR];
-         var apiKey = "8a28a6421856b38d22f46ad0b4721ab1";  // API Key isn't validated in either test environment
-         var posProductInfo =  {posProductVendor: "Foodship", posProductName: "Foodship", posProductVersion: "1.0.0"};
-         var terminalStatus = 0;
-         var tid;
-         var mid;
+          var system = [TYROUI_SIMULATOR, CUSTOMUI_SIMULATOR];
+            var apiKey = "8a28a6421856b38d22f46ad0b4721ab1";  // API Key isn't validated in either test environment
+            var posProductInfo = { posProductVendor: "Foodship", posProductName: "Foodship POS", posProductVersion: "1.0.7" };
+            var terminalStatus = 0;
+            var tid;
+            var mid;
 
          function sendResponse  (params){
              params = JSON.stringify(params);
