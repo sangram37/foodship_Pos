@@ -221,38 +221,38 @@
              const iClient = new TYRO.IClient(apiKey, posProductInfo);
              iClient.pairTerminal(mid, tid, function(response) {
                console.log(response)
-                 if ("success" === response.status) {
-                     $("#pair_result").text("Success: " + response.message);
-                       let  params = {
-                         action:'config-set-success',
-                         message:'config successfully set'
-                       }
-                       sendResponse(params);
-                       const type = $("#type").val();
-                       if(type==='purchase')
-                       {
-                             showPurchaseWithTyroUI();
-                       }
-                        if(type==='refund')
-                       {
-                             showRefundWithTyroUI();
-                       }
+               //   if ("success" === response.status) {
+               //       $("#pair_result").text("Success: " + response.message);
+               //         let  params = {
+               //           action:'config-set-success',
+               //           message:'config successfully set'
+               //         }
+               //         sendResponse(params);
+               //         const type = $("#type").val();
+               //         if(type==='purchase')
+               //         {
+               //               showPurchaseWithTyroUI();
+               //         }
+               //          if(type==='refund')
+               //         {
+               //               showRefundWithTyroUI();
+               //         }
 
-                 } else if ("failure" === response.status) {
-                     $("#pair_result").text("Failure: " + response.message);
-                       let  params = {
-                         action:'config-set-error',
-                         message:response.message
-                       }
-                       sendResponse(params);
-                 } else {
-                        let  params = {
-                         action:'config-set-error',
-                         message:response.message
-                       }
-                       sendResponse(params);
-                     $("#pair_result").text(response.message);
-                 }
+               //   } else if ("failure" === response.status) {
+               //       $("#pair_result").text("Failure: " + response.message);
+               //         let  params = {
+               //           action:'config-set-error',
+               //           message:response.message
+               //         }
+               //         sendResponse(params);
+               //   } else {
+               //          let  params = {
+               //           action:'config-set-error',
+               //           message:response.message
+               //         }
+               //         sendResponse(params);
+               //       $("#pair_result").text(response.message);
+               //   }
              });
          }
 
