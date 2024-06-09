@@ -20,7 +20,7 @@
       <div>
          <button type="button" onclick="doPairing()">Commence Pairing</button>
       </div>
-      <button type="button" class="mt10 btn btn-primary" onclick="purchase()">Purchase</button>
+      <button type="button" class="mt10 btn btn-primary" onclick="doPurchase()">Purchase</button>
       <div id="result"></div>
       <h3 class="mt10">Transaction result</h3>
       
@@ -48,12 +48,12 @@
          posProductVersion: "1.0.7",
          /*     siteReference: "Bundoora" */
       }
-
+            var iclient = new TYRO.IClientWithUI(apiKey, posProductInfo);
       function doPairing() {
          var mid = document.getElementById("mid").value;
          var tid = document.getElementById("tid").value;
             console.log("Pairing mid: " + mid +tid);
-         var iclient = new TYRO.IClientWithUI(apiKey, posProductInfo);
+
          iclient.pairTerminal(mid, tid, function (response) {
             if ("success" == response.status) {
                console.log("Pairing success: " + JSON.stringify(response));
@@ -80,10 +80,11 @@
                }
                $("#result").html(formatResult(response));
             };
-    var amount = '200';
+
 
       function doPurchase() {
-               var iclient = new TYRO.IClientWithUI(apiKey, posProductInfo);
+          var amount = '200';
+               // var iclient = new TYRO.IClientWithUI(apiKey, posProductInfo);
          iclient.initiatePurchase({
             amount: amount,
             enableSurcharge: true,
