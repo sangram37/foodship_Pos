@@ -283,8 +283,9 @@
          const isReceipt = document.getElementById("isReceipt").value === "yes";
          const isSurcharge = document.getElementById("isSurcharge").value === "yes";
          const iClient = new TYRO.IClientWithUI(apiKey, posProductInfo);
-         iClient.initiatePurchase({ amount: amount, cashout: cashout, integratedReceipt: isReceipt, enableSurcharge: isSurcharge }, {
+         iClient.initiatePurchase({ amount: amount, integratedReceipt: true, enableSurcharge: true }, {
             receiptCallback: function (receipt) {
+               console.log(receipt,"receipt")
                document.getElementById("merchantReceipt").innerHTML = formatReceipt(receipt.merchantReceipt);
                const params = {
                   action: 'merchant-receipt-success',
@@ -293,6 +294,7 @@
                sendResponse(params);
             },
             transactionCompleteCallback: function (response) {
+                              console.log(response, "receipt response")
                if (response.customerReceipt) {
                   document.getElementById("customerReceipt").innerHTML = formatReceipt(response.customerReceipt);
                }
