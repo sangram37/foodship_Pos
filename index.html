@@ -341,7 +341,7 @@
                               }else{
                                    let params = {
                                     action: 'config-set-error',
-                                    message: 'Please try again'
+                                    message: response.result, 
                                  };
                                  sendResponse(params);
                               }
