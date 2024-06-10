@@ -299,6 +299,7 @@
             },
             transactionCompleteCallback: function (response) {
                               console.log(response, "receipt response")
+                              if(response.result==='"APPROVED"'){
                if (response.customerReceipt) {
                   document.getElementById("customerReceipt").innerHTML = formatReceipt(response.customerReceipt);
                }
@@ -320,7 +321,17 @@
                   }
                };
                sendResponse(params);
-            }
+            } else if(response.result==='NOT STARTE') {
+                                 alert('Please pair again')
+                                 showConfigurationPage()
+                              }else{
+                                   let params = {
+                                    action: 'config-set-error',
+                                    message: 'Please try again'
+                                 };
+                                 sendResponse(params);
+                              }
+         }
          });
       }
 
