@@ -140,7 +140,7 @@
          posProductName: "Foodship POS",
          posProductVersion: "1.0.7",
       };
-
+       var integrationKey ;
       function setConfig(params) {
          apiKey = params.apiKey;
          mid = params.mid;
@@ -150,6 +150,7 @@
          document.getElementById("mid").value = params.mid;
          document.getElementById("tid").value = params.tid;
          document.getElementById("type").value = params.type;
+         document.getElementById("amount").value = params.amount;
       }
 
       function showPurchaseWithTyroUI() {
@@ -242,12 +243,15 @@
          console.log("Pairing mid: " + mid + tid);
          const iClient = new TYRO.IClientWithUI(apiKey, posProductInfo);
          iClient.pairTerminal(mid, tid, function (response) {
+            console.log(response) 
+
             if ("success" === response.status) {
                document.getElementById("pair_result").innerText = "Success: " + response.message;
                let params = {
                   action: 'config-set-success',
                   message: 'config successfully set'
                };
+                integrationKey = response.integrationKey
                sendResponse(params);
                const type = document.getElementById("type").value;
                if (type === 'purchase') {
@@ -283,7 +287,7 @@
          const isReceipt = document.getElementById("isReceipt").value === "yes";
          const isSurcharge = document.getElementById("isSurcharge").value === "yes";
          const iClient = new TYRO.IClientWithUI(apiKey, posProductInfo);
-         iClient.initiatePurchase({ amount: amount, integratedReceipt: true, enableSurcharge: true }, {
+         iClient.initiatePurchase({ amount: amount, integratedReceipt: true, enableSurcharge: true, integrationKey: integrationKey }, {
             receiptCallback: function (receipt) {
                console.log(receipt,"receipt")
                document.getElementById("merchantReceipt").innerHTML = formatReceipt(receipt.merchantReceipt);
