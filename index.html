@@ -39,14 +39,14 @@
                   <div class="row">
                      <div class="col-12 col-md-3 col-lg-3 col-xl-3 p-1">
                         <h4>Purchase</h4>
-                        <div class="mt-2 col-12 col-md-8">
+                        <!-- <div class="mt-2 col-12 col-md-8">
                            <label class="form-label" for="mid">Merchant ID:</label>
-                           <input id="mid" type="text" class="form-control" placeholder="Merchant ID" name="mid">
+                           <input id="mid" type="text" class="form-control" placeholder="Merchant ID" name="midp">
                         </div>
                         <div class="mt-2 col-12 col-md-8">
                            <label class="form-label" for="tid">Terminal ID:</label>
-                           <input id="tid" type="text" class="form-control" placeholder="Terminal ID" name="tid">
-                        </div>
+                           <input id="tid" type="text" class="form-control" placeholder="Terminal ID" name="tidp">
+                        </div> -->
                         <div class="form-group m-2">
                            <label class="form-label" for="amount">Amount:</label>
                            <input id="amount" type="text" class="form-control" placeholder="Amount" name="amount"
@@ -298,9 +298,10 @@
          iClient.initiatePurchase({ amount: amount,
              integratedReceipt: true,
               enableSurcharge: true,
-             mid: document.getElementById("mid").value,
-            tid: document.getElementById("tid").value, 
-            integrationKey: integrationKey }, {
+            //  mid: document.getElementById("midp").value,
+            // tid: document.getElementById("tidp").value, 
+            // integrationKey: integrationKey
+          }, {
             receiptCallback: function (receipt) {
                console.log(receipt,"receipt")
                document.getElementById("merchantReceipt").innerHTML = formatReceipt(receipt.merchantReceipt);
