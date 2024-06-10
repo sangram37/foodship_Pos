@@ -4,373 +4,364 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Document</title>
+   <title>Tyro Payments Integration</title>
+   <style>
+      .hidden {
+         display: none;
+      }
+   </style>
 </head>
 
 <body>
-
-      <input id="type" name="type" type="hidden" value="purchase">
-      <main class="container-fluid">
-         <div class="row flex-nowrap">
-            <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark min-vh-100">
-               <div class="d-flex flex-column flex-shrink-0 p-3 bg-dark">
-                  <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-                     <span class="fw-bold text-white text-bold">Tyro Payments</span>
-                  </a>
-                  <ul class="nav nav-pills flex-column mb-auto" id="configNavigation">
-                     <li class="nav-item" id="configuration"><a class="nav-link"
-                           href="javascript:showConfigurationPage()">Configuration</a></li>
-                     <li class="nav-item" id="purchaseWithTyroUI"><a class="nav-link"
-                           href="javascript:showPurchaseWithTyroUI()">Purchase</a></li>
-                     <li class="nav-item" id="refundWithTyroUI"><a class="nav-link"
-                           href="javascript:showRefundWithTyroUI()">Refund</a></li>
-                  </ul>
-               </div>
+   <input id="type" name="type" type="hidden" value="purchase">
+   <main class="container-fluid">
+      <div class="row flex-nowrap">
+         <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark min-vh-100">
+            <div class="d-flex flex-column flex-shrink-0 p-3 bg-dark">
+               <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+                  <span class="fw-bold text-white text-bold">Tyro Payments</span>
+               </a>
+               <ul class="nav nav-pills flex-column mb-auto" id="configNavigation">
+                  <li class="nav-item" id="configuration"><a class="nav-link"
+                        href="javascript:showConfigurationPage()">Configuration</a></li>
+                  <li class="nav-item" id="purchaseWithTyroUI"><a class="nav-link"
+                        href="javascript:showPurchaseWithTyroUI()">Purchase</a></li>
+                  <li class="nav-item" id="refundWithTyroUI"><a class="nav-link"
+                        href="javascript:showRefundWithTyroUI()">Refund</a></li>
+               </ul>
             </div>
-            <div class="col py-3">
-               <div id="content">
-                  <div id="purchaseWithTyroUIContent" class="hidden">
-                     <input id="isReceipt" type="hidden" name="isReceipt" value="yes">
-                     <input id="isSurcharge" type="hidden" name="isSurcharge" value="yes">
-                     <div class="row">
-                        <div class="col-12 col-md-3 col-lg-3 col-xl-3 p-1">
-                           <h4>Purchase</h4>
-                           <div class="form-group m-2">
-                              <label class="form-label" for="amount">Amount:</label>
-                              <input id="amount" type="text" class="form-control" placeholder="Amount" name="amount"
-                                 value="10000">
-                           </div>
-                           <div class="form-group m-2">
-                              <label class="form-label" for="cashout">Cash out:</label>
-                              <input id="cashout" type="text" class="form-control" placeholder="Cash out" name="cashout"
-                                 value="0">
-                           </div>
-                           <div class="form-group m-2 d-flex justify-content-center align-items-center">
-                              <button type="button" class="btn btn-lg btn-primary"
-                                 onclick="doPurchaseWithTyroUI()">Process</button>
-                           </div>
+         </div>
+         <div class="col py-3">
+            <div id="content">
+               <div id="purchaseWithTyroUIContent" class="hidden">
+                  <input id="isReceipt" type="hidden" name="isReceipt" value="yes">
+                  <input id="isSurcharge" type="hidden" name="isSurcharge" value="yes">
+                  <div class="row">
+                     <div class="col-12 col-md-3 col-lg-3 col-xl-3 p-1">
+                        <h4>Purchase</h4>
+                        <div class="form-group m-2">
+                           <label class="form-label" for="amount">Amount:</label>
+                           <input id="amount" type="text" class="form-control" placeholder="Amount" name="amount"
+                              value="10000">
                         </div>
-                        <div class="col-12 col-md-3 col-lg-3 col-xl-3 p-1">
-                           <h4>Result</h4>
-                           <div id="result"></div>
+                        <div class="form-group m-2">
+                           <label class="form-label" for="cashout">Cash out:</label>
+                           <input id="cashout" type="text" class="form-control" placeholder="Cash out" name="cashout"
+                              value="0">
                         </div>
-                        <div class="col-12 col-md-3 col-lg-3 col-xl-3 p-1">
-                           <h4>Merchant Receipt</h4>
-                           <div id="merchantReceipt" style="width: 250px;"></div>
-                        </div>
-                        <div class="col-12 col-md-3 col-lg-3 col-xl-3 p-1">
-                           <h4>Customer Receipt</h4>
-                           <div id="customerReceipt" style="width: 250px;"></div>
+                        <div class="form-group m-2 d-flex justify-content-center align-items-center">
+                           <button type="button" class="btn btn-lg btn-primary"
+                              onclick="doPurchaseWithTyroUI()">Process</button>
                         </div>
                      </div>
-                  </div>
-                  <div id="refundWithTyroUIContent" class="hidden">
-                     <div class="row">
-                        <div class="col-12 col-md-3 col-lg-3 col-xl-3 p-1">
-                           <h4>Refund</h4>
-                           <div class="form-group m-2">
-                              <label class="form-label" for="refund_amount">Refund Amount:</label>
-                              <input id="refund_amount" type="text" class="form-control" placeholder="Amount"
-                                 name="refund_amount" value="">
-                           </div>
-                           <div class="form-group m-2 d-flex justify-content-center align-items-center">
-                              <button type="button" class="btn btn-lg btn-primary"
-                                 onclick="doRefundWithTyroUI()">Process</button>
-                           </div>
-                        </div>
-                        <div class="col-12 col-md-3 col-lg-3 col-xl-3 p-1">
-                           <h4>Result</h4>
-                           <div id="refund_result"></div>
-                        </div>
-                        <div class="col-12 col-md-3 col-lg-3 col-xl-3 p-1">
-                           <h4>Merchant Receipt</h4>
-                           <div id="refund_merchantReceipt" style="width: 250px;"></div>
-                        </div>
-                        <div class="col-12 col-md-3 col-lg-3 col-xl-3 p-1">
-                           <h4>Customer Receipt</h4>
-                           <div id="refund_customerReceipt" style="width: 250px;"></div>
-                        </div>
+                     <div class="col-12 col-md-3 col-lg-3 col-xl-3 p-1">
+                        <h4>Result</h4>
+                        <div id="result"></div>
+                     </div>
+                     <div class="col-12 col-md-3 col-lg-3 col-xl-3 p-1">
+                        <h4>Merchant Receipt</h4>
+                        <div id="merchantReceipt" style="width: 250px;"></div>
+                     </div>
+                     <div class="col-12 col-md-3 col-lg-3 col-xl-3 p-1">
+                        <h4>Customer Receipt</h4>
+                        <div id="customerReceipt" style="width: 250px;"></div>
                      </div>
                   </div>
-                  <div id="pairingContent" class="hidden">
-                     <div class="row">
-                        <div class="col-12 col-md-6 col-lg-6 col-xl-6 p-1">
-                           <h4>Configuration</h4>
-                           <div class="mt-2 col-12 col-md-8">
-                              <label class="form-label" for="mid">Merchant ID:</label>
-                              <input id="mid" type="text" class="form-control" placeholder="Merchant ID" name="mid">
-                           </div>
-                           <div class="mt-2 col-12 col-md-8">
-                              <label class="form-label" for="tid">Terminal ID:</label>
-                              <input id="tid" type="text" class="form-control" placeholder="Terminal ID" name="tid">
-                           </div>
-                           <div class="d-flex mt-2 col-12 col-md-8 justify-content-center align-items-center">
-                              <button type="button" class="btn btn-lg btn-primary" onclick="doPairing()">Commence
-                                 Pairing</button>
-                           </div>
+               </div>
+               <div id="refundWithTyroUIContent" class="hidden">
+                  <div class="row">
+                     <div class="col-12 col-md-3 col-lg-3 col-xl-3 p-1">
+                        <h4>Refund</h4>
+                        <div class="form-group m-2">
+                           <label class="form-label" for="refund_amount">Refund Amount:</label>
+                           <input id="refund_amount" type="text" class="form-control" placeholder="Amount"
+                              name="refund_amount" value="">
                         </div>
-                        <div class="col-12 col-md-6 col-lg-6 col-xl-6">
-                           <div class="border border-light p-1" style="height: 200px;">
-                              <h4>Messages</h4>
-                              <div id="messages"></div>
-                           </div>
-                           <div class="border border-light p-1" style="height: 200px;">
-                              <h4>Result</h4>
-                              <div id="pair_result"></div>
-                           </div>
+                        <div class="form-group m-2 d-flex justify-content-center align-items-center">
+                           <button type="button" class="btn btn-lg btn-primary"
+                              onclick="doRefundWithTyroUI()">Process</button>
+                        </div>
+                     </div>
+                     <div class="col-12 col-md-3 col-lg-3 col-xl-3 p-1">
+                        <h4>Result</h4>
+                        <div id="refund_result"></div>
+                     </div>
+                     <div class="col-12 col-md-3 col-lg-3 col-xl-3 p-1">
+                        <h4>Merchant Receipt</h4>
+                        <div id="refund_merchantReceipt" style="width: 250px;"></div>
+                     </div>
+                     <div class="col-12 col-md-3 col-lg-3 col-xl-3 p-1">
+                        <h4>Customer Receipt</h4>
+                        <div id="refund_customerReceipt" style="width: 250px;"></div>
+                     </div>
+                  </div>
+               </div>
+               <div id="pairingContent" class="hidden">
+                  <div class="row">
+                     <div class="col-12 col-md-6 col-lg-6 col-xl-6 p-1">
+                        <h4>Configuration</h4>
+                        <div class="mt-2 col-12 col-md-8">
+                           <label class="form-label" for="mid">Merchant ID:</label>
+                           <input id="mid" type="text" class="form-control" placeholder="Merchant ID" name="mid">
+                        </div>
+                        <div class="mt-2 col-12 col-md-8">
+                           <label class="form-label" for="tid">Terminal ID:</label>
+                           <input id="tid" type="text" class="form-control" placeholder="Terminal ID" name="tid">
+                        </div>
+                        <div class="d-flex mt-2 col-12 col-md-8 justify-content-center align-items-center">
+                           <button type="button" class="btn btn-lg btn-primary" onclick="doPairing()">Commence
+                              Pairing</button>
+                        </div>
+                     </div>
+                     <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+                        <div class="border border-light p-1" style="height: 200px;">
+                           <h4>Messages</h4>
+                           <div id="messages"></div>
+                        </div>
+                        <div class="border border-light p-1" style="height: 200px;">
+                           <h4>Result</h4>
+                           <div id="pair_result"></div>
                         </div>
                      </div>
                   </div>
                </div>
             </div>
          </div>
-      </main>
-
-
+      </div>
+   </main>
 
    <script src="https://iclientsimulator.test.tyro.com/iclient-with-ui-v1.js"></script>
    <script>
-         var apiKey = "8a28a6421856b38d22f46ad0b4721ab1";
-            // API Key not validated test environments
-                var tid;
-                var mid;
-            const posProductInfo = {
-               posProductVendor: "Foodship",
-               posProductName: "Foodship POS",
-               posProductVersion: "1.0.7",
-               /*     siteReference: "Bundoora" */
-            }
-          function setConfig(params) {
-               apiKey = params.apiKey;
-               mid = params.mid;
-               tid = params.tid;
-               posProductInfo = params.posProductInfo;
-               terminalStatus = 1;
-               $("#mid").val(params.mid);
-               $("#tid").val(params.tid);
-               $("#type").val(params.type);
-         //       setTimeout(() => {
-         // iclient = new TYRO.IClientWithUI(apiKey, posProductInfo);
-         //       }, 1000)
-            }
-              function showPurchaseWithTyroUI() {
-                  $("#pairingContent").hide();
-                  $("#purchaseWithTyroUIContent").show();
-                  $("#refundWithTyroUIContent").hide();
-               }
+      var apiKey = "8a28a6421856b38d22f46ad0b4721ab1";
+      var tid;
+      var mid;
+      const posProductInfo = {
+         posProductVendor: "Foodship",
+         posProductName: "Foodship POS",
+         posProductVersion: "1.0.7",
+      };
 
-               function showRefundWithTyroUI() {
-                  $("#pairingContent").hide();
-                  $("#purchaseWithTyroUIContent").hide();
-                  $("#refundWithTyroUIContent").show();
-               }
+      function setConfig(params) {
+         apiKey = params.apiKey;
+         mid = params.mid;
+         tid = params.tid;
+         posProductInfo = params.posProductInfo;
+         terminalStatus = 1;
+         document.getElementById("mid").value = params.mid;
+         document.getElementById("tid").value = params.tid;
+         document.getElementById("type").value = params.type;
+      }
 
+      function showPurchaseWithTyroUI() {
+         document.getElementById("pairingContent").classList.add("hidden");
+         document.getElementById("purchaseWithTyroUIContent").classList.remove("hidden");
+         document.getElementById("refundWithTyroUIContent").classList.add("hidden");
+      }
 
-               function showConfigurationPage() {
-                  $("#pairingContent").show();
-                  $("#purchaseWithTyroUIContent").hide();
-                  $("#refundWithTyroUIContent").hide();
-               }
-      // var apiKey = "8hHN9tCA7WHbW0UgVTfJp3x3Hk97h1b"; 
-       function sendResponse(params) {
-            params = JSON.stringify(params);
-            if (window.ReactNativeWebView !== null && window.ReactNativeWebView !== undefined) {
-               window.ReactNativeWebView.postMessage(params);
-            }
+      function showRefundWithTyroUI() {
+         document.getElementById("pairingContent").classList.add("hidden");
+         document.getElementById("purchaseWithTyroUIContent").classList.add("hidden");
+         document.getElementById("refundWithTyroUIContent").classList.remove("hidden");
+      }
+
+      function showConfigurationPage() {
+         document.getElementById("pairingContent").classList.remove("hidden");
+         document.getElementById("purchaseWithTyroUIContent").classList.add("hidden");
+         document.getElementById("refundWithTyroUIContent").classList.add("hidden");
+      }
+
+      function sendResponse(params) {
+         params = JSON.stringify(params);
+         if (window.ReactNativeWebView && window.ReactNativeWebView.postMessage) {
+            window.ReactNativeWebView.postMessage(params);
          }
-            async function onWebViewMessage(message) {
-                  try {
-                     if (message === undefined || message === null) {
-                        return;
-                     }
-                     if (message?.data === undefined || message?.data === null || message?.data?.length <= 0) {
-                        return;
-                     }
-                     const res = JSON.parse(message.data);
-                     if (res.action === 'set-config') {
-                        setConfig(res.data);
+      }
 
-                     }
-                     if (res.action === 'init-purchase') {
-                        $("#amount").val(res.data.amount);
-                        $("#cashout").val(res.data.cashout);
-                        const isReceipt = res.data.isReceipt === true ? 'yes' : 'no';
-                        const isSurcharge = res.data.isSurcharge === true ? 'yes' : 'no';
-                        $("#isReceipt").val(isReceipt);
-                        $("#isSurcharge").val(isSurcharge);
-                        setTimeout(() => {
-                           doPurchaseWithTyroUI();
-                        }, 1000);
-
-                     }
-
-                     if (res.action === 'init-refund') {
-                        $("#refund_amount").val(res.data.amount);
-                        setTimeout(() => {
-                           doRefundWithTyroUI();
-                        }, 1000);
-                     }
-                  }
-                  catch (e) {
-
-                  }
-               }
-         function formatReceipt(text) {
-            return "<pre>" + text + "</pre>";
+      async function onWebViewMessage(message) {
+         try {
+            if (!message === undefined || message === null|| message === '') return;
+            if (!message.data) return;
+            const res = JSON.parse(message.data);
+            if (res.action === 'set-config') {
+               setConfig(res.data);
+            }
+            if (res.action === 'init-purchase') {
+               document.getElementById("amount").value = res.data.amount;
+               document.getElementById("cashout").value = res.data.cashout;
+               document.getElementById("isReceipt").value = res.data.isReceipt ? 'yes' : 'no';
+               document.getElementById("isSurcharge").value = res.data.isSurcharge ? 'yes' : 'no';
+               setTimeout(() => {
+                  doPurchaseWithTyroUI();
+               }, 1000);
+            }
+            if (res.action === 'init-refund') {
+               document.getElementById("refund_amount").value = res.data.amount;
+               setTimeout(() => {
+                  doRefundWithTyroUI();
+               }, 1000);
+            }
+         } catch (e) {
+            console.error(e);
          }
+      }
 
-         function formatResult(response) {
-            let result = "<table>";
-            result += "<tr><td>Result:</td><td>" + response.result + "</td></tr>"
-            result += "</table>";
-            return result;
-         }
-   document.addEventListener('message', function (message) {
-      onWebViewMessage(message);
-   });
-   window.addEventListener('message', function (message) {
-      onWebViewMessage(message);
-   });
-                  function init() {
-                        const params = {
-                           action: 'ready',
-                           status: 1,
-                        }
-                        sendResponse(params)
-                     }
+      function formatReceipt(text) {
+         return "<pre>" + text + "</pre>";
+      }
 
-                     $().ready(function () {
-                        showConfigurationPage();
-                        init();
-                     });
+      function formatResult(response) {
+         let result = "<table>";
+         result += "<tr><td>Result:</td><td>" + response.result + "</td></tr>";
+         result += "</table>";
+         return result;
+      }
+
+      document.addEventListener('message', function (message) {
+         onWebViewMessage(message);
+      });
+      window.addEventListener('message', function (message) {
+         onWebViewMessage(message);
+      });
+
+      function init() {
+         const params = {
+            action: 'ready',
+            status: 1,
+         };
+         sendResponse(params);
+      }
+
+      document.addEventListener('DOMContentLoaded', function () {
+         showConfigurationPage();
+         init();
+      });
+
       function doPairing() {
          var mid = document.getElementById("mid").value;
          var tid = document.getElementById("tid").value;
-            console.log("Pairing mid: " + mid +tid);
+         console.log("Pairing mid: " + mid + tid);
          const iClient = new TYRO.IClientWithUI(apiKey, posProductInfo);
          iClient.pairTerminal(mid, tid, function (response) {
             if ("success" === response.status) {
-               $("#pair_result").text("Success: " + response.message);
+               document.getElementById("pair_result").innerText = "Success: " + response.message;
                let params = {
                   action: 'config-set-success',
                   message: 'config successfully set'
-               }
+               };
                sendResponse(params);
-               const type = $("#type").val();
+               const type = document.getElementById("type").value;
                if (type === 'purchase') {
                   showPurchaseWithTyroUI();
                }
                if (type === 'refund') {
                   showRefundWithTyroUI();
                }
-
             } else if ("failure" === response.status) {
-               $("#pair_result").text("Failure: " + response.message);
+               document.getElementById("pair_result").innerText = "Failure: " + response.message;
                let params = {
                   action: 'config-set-error',
                   message: response.message
-               }
+               };
                sendResponse(params);
             } else {
                let params = {
                   action: 'config-set-error',
                   message: response.message
-               }
+               };
                sendResponse(params);
-               $("#pair_result").text(response.message);
+               document.getElementById("pair_result").innerText = response.message;
             }
          });
       }
 
-
-   function doPurchaseWithTyroUI() {
-      $("#result").html('');
-      $("#merchantReceipt").html('');
-      $("#customerReceipt").html('');
-      const amount = $("#amount").val();
-      const cashout = $("#cashout").val();
-      const isReceipt = $("#isReceipt").val() === "yes";
-      const isSurcharge = $("#isSurcharge").val() === "yes";
-      const iClient = new TYRO.IClientWithUI(apiKey, posProductInfo);
-      iClient.initiatePurchase({ amount: amount, cashout: cashout, integratedReceipt: isReceipt, enableSurcharge: isSurcharge }, {
-         receiptCallback: function (receipt) {
-            $("#merchantReceipt").html(formatReceipt(receipt.merchantReceipt));
-            const params = {
-               action: 'merchant-receipt-success',
-               data: receipt.merchantReceipt,
-            }
-            sendResponse(params);
-         },
-         transactionCompleteCallback: function (response) {
-            if (response.customerReceipt) {
-               $("#customerReceipt").html(formatReceipt(response.customerReceipt));
-            }
-            $("#result").html(formatResult(response));
-
-            if (response?.customerReceipt?.length > 0) {
-               const params = {
-                  action: 'customer-receipt-success',
-                  data: response.customerReceipt,
-               }
-               sendResponse(params);
-            }
-            const params = {
-               action: 'transaction-complete',
-               data: response,
-               extraData: {
-                  isReceipt: isReceipt,
-                  isSurcharge: isSurcharge
-               }
-            }
-            sendResponse(params);
-         }
-      });
-   }
-
-   function doRefundWithTyroUI() {
-      $("#refund_result").html('');
-      $("#refund_merchantReceipt").html('');
-      $("#refund_customerReceipt").html('');
-      const amount = $("#refund_amount").val();
-      const iClient = new TYRO.IClientWithUI(apiKey, posProductInfo);
-      iClient.initiateRefund({ amount: amount, integratedReceipt: true }, {
-         receiptCallback: function (receipt) {
-            $("#refund_merchantReceipt").html(formatReceipt(receipt.merchantReceipt));
-            if (receipt?.merchantReceipt?.length > 0) {
+      function doPurchaseWithTyroUI() {
+         document.getElementById("result").innerHTML = '';
+         document.getElementById("merchantReceipt").innerHTML = '';
+         document.getElementById("customerReceipt").innerHTML = '';
+         const amount = document.getElementById("amount").value;
+         const cashout = document.getElementById("cashout").value;
+         const isReceipt = document.getElementById("isReceipt").value === "yes";
+         const isSurcharge = document.getElementById("isSurcharge").value === "yes";
+         const iClient = new TYRO.IClientWithUI(apiKey, posProductInfo);
+         iClient.initiatePurchase({ amount: amount, cashout: cashout, integratedReceipt: isReceipt, enableSurcharge: isSurcharge }, {
+            receiptCallback: function (receipt) {
+               document.getElementById("merchantReceipt").innerHTML = formatReceipt(receipt.merchantReceipt);
                const params = {
                   action: 'merchant-receipt-success',
                   data: receipt.merchantReceipt,
-               }
+               };
                sendResponse(params);
-            }
-            if (receipt?.customerReceipt?.length > 0) {
+            },
+            transactionCompleteCallback: function (response) {
+               if (response.customerReceipt) {
+                  document.getElementById("customerReceipt").innerHTML = formatReceipt(response.customerReceipt);
+               }
+               document.getElementById("result").innerHTML = formatResult(response);
+
+               if (response.customerReceipt && response.customerReceipt.length > 0) {
+                  const params = {
+                     action: 'customer-receipt-success',
+                     data: response.customerReceipt,
+                  };
+                  sendResponse(params);
+               }
                const params = {
-                  action: 'customer-receipt-success',
-                  data: receipt.customerReceipt,
-               }
+                  action: 'transaction-complete',
+                  data: response,
+                  extraData: {
+                     isReceipt: isReceipt,
+                     isSurcharge: isSurcharge
+                  }
+               };
                sendResponse(params);
             }
-         },
-         transactionCompleteCallback: function (response) {
-            if (response.customerReceipt) {
-               $("#refund_customerReceipt").html(formatReceipt(response.customerReceipt));
-            }
-            $("#refund_result").html(formatResult(response));
-            if (response?.customerReceipt?.length > 0) {
+         });
+      }
+
+      function doRefundWithTyroUI() {
+         document.getElementById("refund_result").innerHTML = '';
+         document.getElementById("refund_merchantReceipt").innerHTML = '';
+         document.getElementById("refund_customerReceipt").innerHTML = '';
+         const amount = document.getElementById("refund_amount").value;
+         const iClient = new TYRO.IClientWithUI(apiKey, posProductInfo);
+         iClient.initiateRefund({ amount: amount, integratedReceipt: true }, {
+            receiptCallback: function (receipt) {
+               document.getElementById("refund_merchantReceipt").innerHTML = formatReceipt(receipt.merchantReceipt);
+               if (receipt.merchantReceipt && receipt.merchantReceipt.length > 0) {
+                  const params = {
+                     action: 'merchant-receipt-success',
+                     data: receipt.merchantReceipt,
+                  };
+                  sendResponse(params);
+               }
+               if (receipt.customerReceipt && receipt.customerReceipt.length > 0) {
+                  const params = {
+                     action: 'customer-receipt-success',
+                     data: receipt.customerReceipt,
+                  };
+                  sendResponse(params);
+               }
+            },
+            transactionCompleteCallback: function (response) {
+               if (response.customerReceipt) {
+                  document.getElementById("refund_customerReceipt").innerHTML = formatReceipt(response.customerReceipt);
+               }
+               document.getElementById("refund_result").innerHTML = formatResult(response);
+               if (response.customerReceipt && response.customerReceipt.length > 0) {
+                  const params = {
+                     action: 'customer-receipt-success',
+                     data: response.customerReceipt,
+                  };
+                  sendResponse(params);
+               }
                const params = {
-                  action: 'customer-receipt-success',
-                  data: response.customerReceipt,
-               }
+                  action: 'refund-complete',
+                  data: response,
+               };
                sendResponse(params);
             }
-            const params = {
-               action: 'refund-complete',
-               data: response,
-            }
-            sendResponse(params);
-         }
-      });
-   }
+         });
+      }
    </script>
 </body>
 
