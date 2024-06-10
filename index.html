@@ -338,13 +338,14 @@
             } else if(response.result==='NOT STARTE') {
                                  alert('Please pair again')
                                  showConfigurationPage()
-                              }else{
-                                   let params = {
-                                    action: 'config-set-error',
-                                    message: response.result, 
-                                 };
-                                 sendResponse(params);
                               }
+                              // else{
+                              //      let params = {
+                              //       action: 'config-set-error',
+                              //       message: response.result, 
+                              //    };
+                              //    sendResponse(params);
+                              // }
          }
          });
       }
