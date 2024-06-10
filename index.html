@@ -192,7 +192,9 @@
          try {
             if (!message === undefined || message === null|| message === '') return;
             if (!message.data) return;
+                    console.log(message.data)
             const res = JSON.parse(message.data);
+    
             if (res.action === 'set-config') {
                setConfig(res.data);
             }
