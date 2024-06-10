@@ -138,9 +138,9 @@
       </div>
    </main>
 
-   <script src="https://iclientsimulator.test.tyro.com/iclient-with-ui-v1.js"></script>
+   <script src="https://iclient.tyro.com/iclient-with-ui-v1.js"></script>
    <script>
-      var apiKey = "8a28a6421856b38d22f46ad0b4721ab1";
+      var apiKey = "8hHN9tCA7WHbW0UgVTfJp3x3Hk97h1b";
       var tid;
       var mid;
       const posProductInfo = {
@@ -150,6 +150,8 @@
       };
        var integrationKey ;
       function setConfig(params) {
+         console.log(params)
+         alert(mid)
          apiKey = params.apiKey;
          mid = params.mid;
          tid = params.tid;
@@ -303,16 +305,17 @@
             // integrationKey: integrationKey
           }, {
             receiptCallback: function (receipt) {
-               console.log(receipt,"receipt")
+               
                document.getElementById("merchantReceipt").innerHTML = formatReceipt(receipt.merchantReceipt);
                const params = {
                   action: 'merchant-receipt-success',
                   data: receipt.merchantReceipt,
                };
+               console.log(receipt, "receipt")
                sendResponse(params);
             },
             transactionCompleteCallback: function (response) {
-                              console.log(response, "receipt response")
+                
                               if(response.result==="APPROVED"){
                if (response.customerReceipt) {
                   document.getElementById("customerReceipt").innerHTML = formatReceipt(response.customerReceipt);
@@ -326,6 +329,7 @@
                   };
                   sendResponse(params);
                }
+                             console.log(response, "receipt response")
                const params = {
                   action: 'transaction-complete',
                   data: response,
