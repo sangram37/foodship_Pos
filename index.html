@@ -313,7 +313,7 @@
             },
             transactionCompleteCallback: function (response) {
                               console.log(response, "receipt response")
-                              if(response.result==='"APPROVED"'){
+                              if(response.result==="APPROVED"){
                if (response.customerReceipt) {
                   document.getElementById("customerReceipt").innerHTML = formatReceipt(response.customerReceipt);
                }
