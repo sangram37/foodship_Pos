@@ -19,7 +19,7 @@
       <div class="row flex-nowrap">
          <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark min-vh-100">
             <div class="d-flex flex-column flex-shrink-0 p-3 bg-dark">
-               <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+               <a href="/foodship_Pos/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
                   <span class="fw-bold text-white text-bold">Tyro Payments</span>
                </a>
                <ul class="nav nav-pills flex-column mb-auto" id="configNavigation">
@@ -174,8 +174,8 @@
          document.getElementById("amount").value = params.amount;
          // posProductInfo = JSON.parse(params.posProductInfo);
       }
-   // var options = document.getElementById("tyrolist").value;
-   var options = []
+   var options = document.getElementById("tyrolist").value;
+   // var options = []
 
    // The select element
    const select = document.getElementById('cars');
