@@ -268,9 +268,12 @@
                document.getElementById("pair_result").innerText = "Success: " + response.message;
                let params = {
                   action: 'config-set-success',
-                  message: 'config successfully set'
+                  message: 'config successfully set',
+                  integrationKey : response.integrationKey,
+                  mid: document.getElementById("mid").value,
+                  tid: document.getElementById("tid").value,
                };
-               integrationKey = response.integrationKey
+          
                sendResponse(params);
                const type = document.getElementById("type").value;
                if (type === 'purchase') {
