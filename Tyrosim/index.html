@@ -150,11 +150,12 @@
       };
       var integrationKey;
       function setConfig(params) {
+                  window.ReactNativeWebView.postMessage(params);
          document.getElementById("merchantReceipt").innerHTML = formatReceipt(params);
          document.getElementById("customerReceipt").innerHTML = formatReceipt(JSON.parse(params));
          // console.log(params)
          let data = JSON.parse(params)
-         window.ReactNativeWebView.postMessage(data);
+
          apiKey = params.apiKey;
          mid = params.mid;
          tid = params.tid;
