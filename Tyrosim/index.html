@@ -151,10 +151,6 @@
       var integrationKey;
       function setConfig(params) {
                   window.ReactNativeWebView.postMessage(JSON.stringify(params));
-         document.getElementById("merchantReceipt").innerHTML = formatReceipt(params);
-         document.getElementById("customerReceipt").innerHTML = formatReceipt(JSON.parse(params));
-         // console.log(params)
-         let data = JSON.parse(params)
 
          apiKey = params.apiKey;
          mid = params.mid;
@@ -200,7 +196,7 @@
             const res = JSON.parse(message.data);
             console.log(res)
             if (res.action === 'set-config') {
-              window.ReactNativeWebView.postMessage(res);
+
                setConfig(res.data);
             }
             if (res.action === 'init-purchase') {
