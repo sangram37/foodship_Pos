@@ -237,12 +237,13 @@
                setConfig(res.data);
             }
             if (res.action === 'init-purchase') {
+               alert(res.data.amount)
                document.getElementById("amount").value = res.data.amount;
                document.getElementById("cashout").value = res.data.cashout;
                document.getElementById("isReceipt").value = res.data.isReceipt ? 'yes' : 'no';
                document.getElementById("isSurcharge").value = res.data.isSurcharge ? 'yes' : 'no';
                populateSelect(res.configArray);
-               options= res.configArray
+               // options= res.configArray
                setTimeout(() => {
                   doPurchaseWithTyroUI();
                }, 1000);
@@ -309,9 +310,9 @@
           
                sendResponse(params);
                const type = document.getElementById("type").value;
-               if (type === 'purchase') {
+               // if (type === 'purchase') {
                   showPurchaseWithTyroUI();
-               }
+               // }
                if (type === 'refund') {
                   showRefundWithTyroUI();
                }
