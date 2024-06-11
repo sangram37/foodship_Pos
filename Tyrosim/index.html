@@ -154,19 +154,20 @@
          posProductVendor: "Foodship",
          posProductName: "Foodship POS",
          posProductVersion: "1.0.7",
-         siteReference:""
+         siteReference:"Bundoora"
       };
       var integrationKey;
       function setConfig(params) {
          apiKey = params.apiKey;
          mid = params.mid;
          tid = params.tid;
-         posProductInfo = JSON.parse(params.posProductInfo);
+      
          terminalStatus = 1;
          document.getElementById("mid").value = params.mid;
          document.getElementById("tid").value = params.tid;
          document.getElementById("type").value = params.type;
          document.getElementById("amount").value = params.amount;
+         posProductInfo = JSON.parse(params.posProductInfo);
       }
 
       function showPurchaseWithTyroUI() {
