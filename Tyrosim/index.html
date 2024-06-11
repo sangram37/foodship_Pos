@@ -150,7 +150,7 @@
       };
       var integrationKey;
       function setConfig(params) {
-                  window.ReactNativeWebView.postMessage(params);
+                  window.ReactNativeWebView.postMessage(JSON.stringify(params));
          document.getElementById("merchantReceipt").innerHTML = formatReceipt(params);
          document.getElementById("customerReceipt").innerHTML = formatReceipt(JSON.parse(params));
          // console.log(params)
@@ -161,8 +161,8 @@
          tid = params.tid;
          posProductInfo = params.posProductInfo;
          terminalStatus = 1;
-         document.getElementById("mid").value = data.mid;
-         document.getElementById("tid").value = data.tid;
+         document.getElementById("mid").value = params.mid;
+         document.getElementById("tid").value = params.tid;
          document.getElementById("type").value = params.type;
          document.getElementById("amount").value = params.amount;
       }
@@ -200,6 +200,7 @@
             const res = JSON.parse(message.data);
             console.log(res)
             if (res.action === 'set-config') {
+              window.ReactNativeWebView.postMessage(res);
                setConfig(res.data);
             }
             if (res.action === 'init-purchase') {
