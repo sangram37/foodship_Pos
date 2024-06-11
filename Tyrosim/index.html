@@ -231,7 +231,7 @@
             if (!message.data) return;
 
             const res = JSON.parse(message.data);
-            console.log(res)
+            // console.log(res)
             if (res.action === 'set-config') {
                populateSelect(res.configArray);
                setConfig(res.data);
