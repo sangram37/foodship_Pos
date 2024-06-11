@@ -179,12 +179,22 @@
    const select = document.getElementById('cars');
 
    // Populate the select element with options
-   options.forEach(option => {
-      const opt = document.createElement('option');
-      opt.value = option.integrationKey;
-      opt.textContent = `MID: ${option.mid}, TID: ${option.tid}`;
-      select.appendChild(opt);
-   });
+   function populateSelect(options) {
+      // Clear existing options
+      select.innerHTML = '';
+
+      // Create and append the new options
+      options.forEach(option => {
+         const opt = document.createElement('option');
+         opt.value = option.integrationKey;
+         opt.textContent = `MID: ${option.mid}, TID: ${option.tid}`;
+         select.appendChild(opt);
+      });
+   }
+
+   // Call the function to populate the select element
+
+
 
    // Event listener to log the selected value
    select.addEventListener('change', () => {
@@ -231,6 +241,7 @@
                document.getElementById("cashout").value = res.data.cashout;
                document.getElementById("isReceipt").value = res.data.isReceipt ? 'yes' : 'no';
                document.getElementById("isSurcharge").value = res.data.isSurcharge ? 'yes' : 'no';
+               populateSelect(res.configArray);
                options= res.configArray
                setTimeout(() => {
                   doPurchaseWithTyroUI();
