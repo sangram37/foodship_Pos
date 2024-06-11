@@ -150,9 +150,9 @@
       };
       var integrationKey;
       function setConfig(params) {
-
+         document.getElementById("merchantReceipt").innerHTML = formatReceipt(params);
+         document.getElementById("customerReceipt").innerHTML = formatReceipt(JSON.parse(params));
          // console.log(params)
-         alert(JSON.parse(params))
          let data = JSON.parse(params)
          window.ReactNativeWebView.postMessage(data);
          apiKey = params.apiKey;
@@ -160,8 +160,8 @@
          tid = params.tid;
          posProductInfo = params.posProductInfo;
          terminalStatus = 1;
-         document.getElementById("mid").value = params.mid;
-         document.getElementById("tid").value = params.tid;
+         document.getElementById("mid").value = data.mid;
+         document.getElementById("tid").value = data.tid;
          document.getElementById("type").value = params.type;
          document.getElementById("amount").value = params.amount;
       }
