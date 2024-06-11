@@ -39,8 +39,12 @@
                   <div class="row">
                      <div class="col-12 col-md-3 col-lg-3 col-xl-3 p-1">
                         <h4>Purchase</h4>
-                        <!-- <div class="mt-2 col-12 col-md-8">
-                           <label class="form-label" for="mid">Merchant ID:</label>
+                   <div class="mt-2 col-12 col-md-8">
+                           <select name="cars" id="cars">
+                     
+                           </select>
+                              </div>
+                           <!--  <div class="mt-2 col-12 col-md-8">   <label class="form-label" for="mid">Merchant ID:</label>
                            <input id="mid" type="text" class="form-control" placeholder="Merchant ID" name="midp">
                         </div>
                         <div class="mt-2 col-12 col-md-8">
@@ -169,7 +173,23 @@
          document.getElementById("amount").value = params.amount;
          // posProductInfo = JSON.parse(params.posProductInfo);
       }
+   var options = [];
 
+   // The select element
+   const select = document.getElementById('cars');
+
+   // Populate the select element with options
+   options.forEach(option => {
+      const opt = document.createElement('option');
+      opt.value = option.integrationKey;
+      opt.textContent = `MID: ${option.mid}, TID: ${option.tid}`;
+      select.appendChild(opt);
+   });
+
+   // Event listener to log the selected value
+   select.addEventListener('change', () => {
+      console.log(`Selected Integration Key: ${select.value}`);
+   });
       function showPurchaseWithTyroUI() {
          document.getElementById("pairingContent").classList.add("hidden");
          document.getElementById("purchaseWithTyroUIContent").classList.remove("hidden");
@@ -211,6 +231,7 @@
                document.getElementById("cashout").value = res.data.cashout;
                document.getElementById("isReceipt").value = res.data.isReceipt ? 'yes' : 'no';
                document.getElementById("isSurcharge").value = res.data.isSurcharge ? 'yes' : 'no';
+               options= res.configArray
                setTimeout(() => {
                   doPurchaseWithTyroUI();
                }, 1000);
