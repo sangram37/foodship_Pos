@@ -152,7 +152,7 @@
       function setConfig(params) {
 
          // console.log(params)
-         // alert(params)
+         alert(JSON.parse(params))
          let data = JSON.parse(params)
          window.ReactNativeWebView.postMessage(data);
          apiKey = params.apiKey;
