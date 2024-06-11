@@ -161,7 +161,7 @@
          apiKey = params.apiKey;
          mid = params.mid;
          tid = params.tid;
-         posProductInfo = params.posProductInfo;
+         posProductInfo = JSON.parse(params.posProductInfo);
          terminalStatus = 1;
          document.getElementById("mid").value = params.mid;
          document.getElementById("tid").value = params.tid;
