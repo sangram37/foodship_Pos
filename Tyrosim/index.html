@@ -14,6 +14,7 @@
 
 <body>
    <input id="type" name="type" type="hidden" value="purchase">
+   <input id="tyrolist" name="tyrolist" type="hidden" >
    <main class="container-fluid">
       <div class="row flex-nowrap">
          <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark min-vh-100">
@@ -173,25 +174,30 @@
          document.getElementById("amount").value = params.amount;
          // posProductInfo = JSON.parse(params.posProductInfo);
       }
-   var options = [];
+   var options = document.getElementById("tyrolist").value;
 
    // The select element
    const select = document.getElementById('cars');
 
    // Populate the select element with options
-   function populateSelect(options) {
-      // Clear existing options
-      select.innerHTML = '';
+   // function populateSelect(options) {
+   //    // Clear existing options
+   //    select.innerHTML = '';
 
-      // Create and append the new options
-      options.forEach(option => {
-         const opt = document.createElement('option');
-         opt.value = option.integrationKey;
-         opt.textContent = `MID: ${option.mid}, TID: ${option.tid}`;
-         select.appendChild(opt);
-      });
-   }
-
+   //    // Create and append the new options
+   //    options.forEach(option => {
+   //       const opt = document.createElement('option');
+   //       opt.value = option.integrationKey;
+   //       opt.textContent = `MID: ${option.mid}, TID: ${option.tid}`;
+   //       select.appendChild(opt);
+   //    });
+   // }
+         options.forEach(option => {
+            const opt = document.createElement('option');
+            opt.value = option.integrationKey;
+            opt.textContent = `MID: ${option.mid}, TID: ${option.tid}`;
+            select.appendChild(opt);
+         });
    // Call the function to populate the select element
 
 
@@ -233,16 +239,17 @@
             const res = JSON.parse(message.data);
             // console.log(res)
             if (res.action === 'set-config') {
-               populateSelect(res.configArray);
+           document.getElementById("tyrolist").value = res.configArray
                setConfig(res.data);
             }
             if (res.action === 'init-purchase') {
                // alert(res.data.amount)
-                    populateSelect(res.configArray);
+                  //   populateSelect(res.configArray);
                document.getElementById("amount").value = res.data.amount;
                document.getElementById("cashout").value = res.data.cashout;
                document.getElementById("isReceipt").value = res.data.isReceipt ? 'yes' : 'no';
                document.getElementById("isSurcharge").value = res.data.isSurcharge ? 'yes' : 'no';
+               document.getElementById("tyrolist").value = res.configArray
           
                // options= res.configArray
                // setTimeout(() => {
