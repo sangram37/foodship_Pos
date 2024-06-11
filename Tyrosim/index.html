@@ -241,6 +241,7 @@
             // console.log(res)
             if (res.action === 'set-config') {
                document.getElementById("tyrolist").value = res.configArray
+                populateSelect(res.configArray);
                setConfig(res.data);
             }
             if (res.action === 'init-purchase') {
