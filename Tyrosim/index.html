@@ -152,7 +152,7 @@
       function setConfig(params) {
 
          // console.log(params)
-         alert(params)
+         window.ReactNativeWebView.postMessage(params);
          apiKey = params.apiKey;
          mid = params.mid;
          tid = params.tid;
