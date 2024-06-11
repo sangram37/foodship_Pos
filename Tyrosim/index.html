@@ -240,7 +240,7 @@
             const res = JSON.parse(message.data);
             // console.log(res)
             if (res.action === 'set-config') {
-           populateSelect(res.configArray);
+               document.getElementById("tyrolist").value = res.configArray
                setConfig(res.data);
             }
             if (res.action === 'init-purchase') {
