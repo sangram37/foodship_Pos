@@ -14,7 +14,7 @@
 
 <body>
    <input id="type" name="type" type="hidden" value="purchase">
-   <input id="tyrolist" name="tyrolist" type="hidden" >
+   <input id="tyrolist" name="tyrolist" type="hidden" value="[]" >
    <main class="container-fluid">
       <div class="row flex-nowrap">
          <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark min-vh-100">
@@ -174,30 +174,31 @@
          document.getElementById("amount").value = params.amount;
          // posProductInfo = JSON.parse(params.posProductInfo);
       }
-   var options = document.getElementById("tyrolist").value;
+   // var options = document.getElementById("tyrolist").value;
+   var options = []
 
    // The select element
    const select = document.getElementById('cars');
 
    // Populate the select element with options
-   // function populateSelect(options) {
-   //    // Clear existing options
-   //    select.innerHTML = '';
+   function populateSelect(options) {
+      // Clear existing options
+      select.innerHTML = '';
 
-   //    // Create and append the new options
-   //    options.forEach(option => {
-   //       const opt = document.createElement('option');
-   //       opt.value = option.integrationKey;
-   //       opt.textContent = `MID: ${option.mid}, TID: ${option.tid}`;
-   //       select.appendChild(opt);
-   //    });
-   // }
-         options.forEach(option => {
-            const opt = document.createElement('option');
-            opt.value = option.integrationKey;
-            opt.textContent = `MID: ${option.mid}, TID: ${option.tid}`;
-            select.appendChild(opt);
-         });
+      // Create and append the new options
+      options.forEach(option => {
+         const opt = document.createElement('option');
+         opt.value = option.integrationKey;
+         opt.textContent = `MID: ${option.mid}, TID: ${option.tid}`;
+         select.appendChild(opt);
+      });
+   }
+         // options.forEach(option => {
+         //    const opt = document.createElement('option');
+         //    opt.value = option.integrationKey;
+         //    opt.textContent = `MID: ${option.mid}, TID: ${option.tid}`;
+         //    select.appendChild(opt);
+         // });
    // Call the function to populate the select element
 
 
@@ -239,7 +240,7 @@
             const res = JSON.parse(message.data);
             // console.log(res)
             if (res.action === 'set-config') {
-           document.getElementById("tyrolist").value = res.configArray
+           populateSelect(res.configArray);
                setConfig(res.data);
             }
             if (res.action === 'init-purchase') {
