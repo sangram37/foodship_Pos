@@ -474,7 +474,7 @@
             const res = JSON.parse(message.data);
             // console.log(res)
             if (res.action === 'set-config') {
-               document.getElementById("tyrolist").value = res.configArray
+
                document.getElementById("tyrolist").value = JSON.stringify(res.configArray);
                initializeFromTyrolist()
                // populateSelect(res.configArray);
