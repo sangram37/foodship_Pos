@@ -591,6 +591,7 @@
 
       function doPurchaseWithTyroUI() {
          if (selectedOption) {
+            alert(`${selectedOption.mid},${selectedOption.tid},${selectedOption.integrationKey}`)
             document.getElementById("result").innerHTML = '';
             document.getElementById("merchantReceipt").innerHTML = '';
             document.getElementById("customerReceipt").innerHTML = '';
