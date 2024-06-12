@@ -441,6 +441,7 @@
          };
          // Update the value of tyrolist
          document.getElementById("tyrolist").value = JSON.stringify(updatedArray);
+         initializeFromTyrolist()
          // console.log('Object with the same mid and tid updated');
       } else {
          // Add a new object
@@ -451,6 +452,7 @@
          });
          // Update the value of tyrolist
          document.getElementById("tyrolist").value = JSON.stringify(configArray);
+         initializeFromTyrolist()
          console.log('New object added');
       }
    };
