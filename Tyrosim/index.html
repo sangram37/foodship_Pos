@@ -416,7 +416,7 @@
          console.log(`Selected Integration Key: ${select.value}`);
       });
       function isWebView() {
-         var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+         var userAgent = navigator.userAgent || navigator.vendor || window.ReactNativeWebView;
          return /wv|WebView/.test(userAgent);
       }
 
