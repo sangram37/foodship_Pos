@@ -230,7 +230,7 @@
          <div class="tab">
             <div class="tablinks" onclick="showConfigurationPage()">Configuration</div>
             <div class="tablinks" onclick="showPurchaseWithTyroUI()">Purchase</div>
-            <div class="tablinks" onclick="showRefundWithTyroUI()">Refund</div>
+            <!-- <div class="tablinks" onclick="showRefundWithTyroUI()">Refund</div> -->
 
          </div>
          <div id="content">
@@ -278,13 +278,13 @@
                <div class="row">
                   <div class="col-12 col-md-3 col-lg-3 col-xl-3 p-1">
                      <h4>Refund</h4>
-                           <div class="form-group m-2">
-                              <label class="form-label" for="mid">Select mid Tid:</label>
-                              <select class="form-control" name="cars" id="cars">
-                           
-                              </select>
-                              </select>
-                           </div>
+                     <div class="form-group m-2">
+                        <label class="form-label" for="mid">Select mid Tid:</label>
+                        <select class="form-control" name="cars" id="cars">
+
+                        </select>
+                        </select>
+                     </div>
                      <div class="form-group m-2">
                         <label class="form-label" for="refund_amount">Refund Amount:</label>
                         <input id="refund_amount" type="text" class="form-control" placeholder="Amount"
@@ -589,7 +589,7 @@
                amount: amount,
                integratedReceipt: true,
                enableSurcharge: true,
-                mid: selectedOption.mid,
+               mid: selectedOption.mid,
                tid: selectedOption.tid,
                integrationKey: selectedOption.integrationKey
             }, {
@@ -654,13 +654,14 @@
             document.getElementById("refund_customerReceipt").innerHTML = '';
             const amount = document.getElementById("refund_amount").value;
             const iClient = new TYRO.IClientWithUI(apiKey, posProductInfo);
-            iClient.initiateRefund({ amount: amount,
-                integratedReceipt: true,
-                       enableSurcharge: true,
-                mid: selectedOption.mid ,
+            iClient.initiateRefund({
+               amount: amount,
+               integratedReceipt: true,
+               enableSurcharge: true,
+               mid: selectedOption.mid,
                tid: selectedOption.tid,
                integrationKey: selectedOption.integrationKey
-             }, {
+            }, {
                receiptCallback: function (receipt) {
                   document.getElementById("refund_merchantReceipt").innerHTML = formatReceipt(receipt.merchantReceipt);
                   if (receipt.merchantReceipt && receipt.merchantReceipt.length > 0) {
