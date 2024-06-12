@@ -375,7 +375,7 @@
          document.getElementById("amount").value = params.amount;
          // posProductInfo = JSON.parse(params.posProductInfo);
       }
-      var options = document.getElementById("tyrolist").value;
+      // var options = document.getElementById("tyrolist").value;
       // var options = [{
       //    integrationKey: "2ad67668d2793b97db7a97b016ab5ac3",
       //    mid: "329",
@@ -388,8 +388,13 @@
       let selectedOption = null;
 
       const select = document.getElementById('cars');
-
-
+      function initializeFromTyrolist() {
+         const tyroListValue = document.getElementById('tyrolist').value;
+         if (tyroListValue) {
+            const options = JSON.parse(tyroListValue);
+            populateSelect(options);
+         }
+      }
       function populateSelect(options) {
          select.innerHTML = '';
          options.forEach(option => {
@@ -398,7 +403,7 @@
             opt.textContent = `MID: ${option.mid}, TID: ${option.tid}`;
             select.appendChild(opt);
          });
-             if (options.length > 0) {
+         if (options.length > 0) {
             select.value = JSON.stringify(options[0]);
             selectedOption = options[0];
             console.log(selectedOption.mid, selectedOption.tid, selectedOption.integrationKey);
@@ -412,7 +417,45 @@
       //    select.appendChild(opt);
       // });
 
+      const pushConfig = (params) => {
+         // Get the value of tyrolist
+         const tyroListValue = document.getElementById("tyrolist").value;
+         // Parse the value to get the configArray
+         const configArray = JSON.parse(tyroListValue);
 
+         console.log(params, 'sangrsm');
+
+         // Find the index of the object with the same mid and tid
+         const index = configArray.findIndex(
+            (item) => item.mid === params.mid && item.tid === params.tid,
+         );
+
+         // If the object exists, update it. Otherwise, push the new object to the array
+         if (index !== -1) {
+            // Update the existing object
+            const updatedArray = [...configArray];
+            updatedArray[index] = {
+               mid: params.mid,
+               tid: params.tid,
+               integrationKey: params.integrationKey,
+            };
+            // Update the value of tyrolist
+            document.getElementById("tyrolist").value = JSON.stringify(updatedArray);
+            initializeFromTyrolist()
+            // console.log('Object with the same mid and tid updated');
+         } else {
+            // Add a new object
+            configArray.push({
+               mid: params.mid,
+               tid: params.tid,
+               integrationKey: params.integrationKey,
+            });
+            // Update the value of tyrolist
+            document.getElementById("tyrolist").value = JSON.stringify(configArray);
+            initializeFromTyrolist()
+            console.log('New object added');
+         }
+      };
 
 
       // Event listener to log the selected value
@@ -469,19 +512,21 @@
             const res = JSON.parse(message.data);
             // console.log(res)
             if (res.action === 'set-config') {
-               document.getElementById("tyrolist").value = res.configArray
-               populateSelect(res.configArray);
+
+               document.getElementById("tyrolist").value = JSON.stringify(res.configArray);
+               initializeFromTyrolist()
+               // populateSelect(res.configArray);
                setConfig(res.data);
             }
             if (res.action === 'init-purchase') {
                // alert(res.configArray.length)
                //   populateSelect(res.configArray);
-               document.getElementById("tyrolist").value = res.configArray
                document.getElementById("amount").value = res.data.amount;
                document.getElementById("cashout").value = res.data.cashout;
                document.getElementById("isReceipt").value = res.data.isReceipt ? 'yes' : 'no';
                document.getElementById("isSurcharge").value = res.data.isSurcharge ? 'yes' : 'no';
-               populateSelect(res.configArray);
+               //  document.getElementById("tyrolist").value = JSON.stringify(res.configArray);
+               //          initializeFromTyrolist()
 
                // options= res.configArray
                // setTimeout(() => {
@@ -557,11 +602,12 @@
                   sendResponse(params);
                   const type = document.getElementById("type").value;
                   // if (type === 'purchase') {
-                  showPurchaseWithTyroUI();
+                  pushConfig({ mid: document.getElementById("mid").value, tid: document.getElementById("tid").value, integrationKey: response.integrationKey });
+                  // showPurchaseWithTyroUI();
                   // }
-                  if (type === 'refund') {
+                  // if (type === 'refund') {
                      showRefundWithTyroUI();
-                  }
+                  // }
                } else if ("failure" === response.status) {
                   document.getElementById("pair_result").innerText = "Failure: " + response.message;
                   let params = {
@@ -583,6 +629,7 @@
 
       function doPurchaseWithTyroUI() {
          if (selectedOption) {
+
             document.getElementById("result").innerHTML = '';
             document.getElementById("merchantReceipt").innerHTML = '';
             document.getElementById("customerReceipt").innerHTML = '';
