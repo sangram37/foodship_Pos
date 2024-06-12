@@ -417,7 +417,43 @@
       //    select.appendChild(opt);
       // });
 
+   const pushConfig = (params) => {
+      // Get the value of tyrolist
+      const tyroListValue = document.getElementById("tyrolist").value;
+      // Parse the value to get the configArray
+      const configArray = JSON.parse(tyroListValue);
 
+      console.log(params, 'sangrsm');
+
+      // Find the index of the object with the same mid and tid
+      const index = configArray.findIndex(
+         (item) => item.mid === params.mid && item.tid === params.tid,
+      );
+
+      // If the object exists, update it. Otherwise, push the new object to the array
+      if (index !== -1) {
+         // Update the existing object
+         const updatedArray = [...configArray];
+         updatedArray[index] = {
+            mid: params.mid,
+            tid: params.tid,
+            integrationKey: params.integrationKey,
+         };
+         // Update the value of tyrolist
+         document.getElementById("tyrolist").value = JSON.stringify(updatedArray);
+         // console.log('Object with the same mid and tid updated');
+      } else {
+         // Add a new object
+         configArray.push({
+            mid: params.mid,
+            tid: params.tid,
+            integrationKey: params.integrationKey,
+         });
+         // Update the value of tyrolist
+         document.getElementById("tyrolist").value = JSON.stringify(configArray);
+         console.log('New object added');
+      }
+   };
 
 
       // Event listener to log the selected value
@@ -487,8 +523,8 @@
                document.getElementById("cashout").value = res.data.cashout;
                document.getElementById("isReceipt").value = res.data.isReceipt ? 'yes' : 'no';
                document.getElementById("isSurcharge").value = res.data.isSurcharge ? 'yes' : 'no';
-       document.getElementById("tyrolist").value = JSON.stringify(res.configArray);
-               initializeFromTyrolist()
+      //  document.getElementById("tyrolist").value = JSON.stringify(res.configArray);
+      //          initializeFromTyrolist()
 
                // options= res.configArray
                // setTimeout(() => {
@@ -564,6 +600,7 @@
                   sendResponse(params);
                   const type = document.getElementById("type").value;
                   // if (type === 'purchase') {
+                     pushConfig({ mid: document.getElementById("mid").value, tid: document.getElementById("tid").value, integrationKey: response.integrationKey });
                   showPurchaseWithTyroUI();
                   // }
                   if (type === 'refund') {
