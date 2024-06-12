@@ -398,6 +398,12 @@
             opt.textContent = `MID: ${option.mid}, TID: ${option.tid}`;
             select.appendChild(opt);
          });
+             if (options.length > 0) {
+            select.value = JSON.stringify(options[0]);
+            selectedOption = options[0];
+            console.log(selectedOption.mid, selectedOption.tid, selectedOption.integrationKey);
+            console.log(`Initial Selected Integration Key: ${selectedOption.integrationKey}`);
+         }
       }
       // options.forEach(option => {
       //    const opt = document.createElement('option');
