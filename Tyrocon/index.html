@@ -177,7 +177,7 @@
          border-radius: 5px;
          display: flex;
          gap: 10px;
-         justify-content:center;
+         justify-content: space-between;
          align-self: center;
          align-items: center;
          /* width: 30%; */
@@ -228,9 +228,9 @@
 
       <div class="col py-3">
          <div class="tab">
-            <!-- <div class="tablinks" onclick="showConfigurationPage()">Configuration</div> -->
+            <div class="tablinks" onclick="showConfigurationPage()">Configuration</div>
             <!-- <div class="tablinks" onclick="showPurchaseWithTyroUI()">Purchase</div> -->
-            <div class="tablinks" onclick="showRefundWithTyroUI()">Refund</div>
+            <!-- <div class="tablinks" onclick="showRefundWithTyroUI()">Refund</div> -->
 
          </div>
          <div id="content">
@@ -359,11 +359,11 @@
          document.getElementById("mid").value = params.mid;
          document.getElementById("tid").value = params.tid;
          document.getElementById("type").value = params.type;
-         document.getElementById("configKey").value = params.configKey;
          document.getElementById("amount").value = params.amount;
          // posProductInfo = JSON.parse(params.posProductInfo);
       }
 
+   
       function isWebView() {
          var userAgent = window.ReactNativeWebView;
          return true;
@@ -379,11 +379,10 @@
             document.getElementById('result').innerText = "This feature is only available in the app.";
          }
       });
-
-      function showRefundWithTyroUI() {
-         document.getElementById("pairingContent").classList.add("hidden");
+      function showConfigurationPage() {
+         document.getElementById("pairingContent").classList.remove("hidden");
          document.getElementById("purchaseWithTyroUIContent").classList.add("hidden");
-         document.getElementById("refundWithTyroUIContent").classList.remove("hidden");
+         document.getElementById("refundWithTyroUIContent").classList.add("hidden");
       }
 
       function sendResponse(params) {
@@ -399,14 +398,11 @@
             if (!message.data) return;
 
             const res = JSON.parse(message.data);
-         
-            if (res.action === 'init-refund') {
+            // console.log(res)
+            if (res.action === 'set-config') {
                setConfig(res.data);
-               document.getElementById("refund_amount").value = res.data.amount;
-               setTimeout(() => {
-                  doRefundWithTyroUI();
-               }, 1000);
             }
+         
          } catch (e) {
             console.error(e);
          }
@@ -439,64 +435,63 @@
       }
 
       document.addEventListener('DOMContentLoaded', function () {
-         showRefundWithTyroUI();
+         showConfigurationPage();
          init();
       });
-    
-      function doRefundWithTyroUI() {
-         if (selectedOption) {
-            document.getElementById("refund_result").innerHTML = '';
-            document.getElementById("refund_merchantReceipt").innerHTML = '';
-            document.getElementById("refund_customerReceipt").innerHTML = '';
-            const amount = document.getElementById("refund_amount").value;
+
+      function doPairing() {
+
+         var mid = document.getElementById("mid").value;
+         var tid = document.getElementById("tid").value;
+         if (mid === '' && tid === '') {
+            alert('Please add mid And tid')
+         } else {
+
+
+            console.log("Pairing mid: " + mid + tid);
             const iClient = new TYRO.IClientWithUI(apiKey, posProductInfo);
-            iClient.initiateRefund({ amount: amount,
-               integratedReceipt: true,
-               enableSurcharge: true,
-               mid:document.getElementById("mid").value ,
-               tid: document.getElementById("tid").value,
-               integrationKey: document.getElementById("configKey").value
-             }, {
-               receiptCallback: function (receipt) {
-                  document.getElementById("refund_merchantReceipt").innerHTML = formatReceipt(receipt.merchantReceipt);
-                  if (receipt.merchantReceipt && receipt.merchantReceipt.length > 0) {
-                     const params = {
-                        action: 'merchant-receipt-success',
-                        data: receipt.merchantReceipt,
-                     };
-                     sendResponse(params);
-                  }
-                  if (receipt.customerReceipt && receipt.customerReceipt.length > 0) {
-                     const params = {
-                        action: 'customer-receipt-success',
-                        data: receipt.customerReceipt,
-                     };
-                     sendResponse(params);
-                  }
-               },
-               transactionCompleteCallback: function (response) {
-                  if (response.customerReceipt) {
-                     document.getElementById("refund_customerReceipt").innerHTML = formatReceipt(response.customerReceipt);
-                  }
-                  document.getElementById("refund_result").innerHTML = formatResult(response);
-                  if (response.customerReceipt && response.customerReceipt.length > 0) {
-                     const params = {
-                        action: 'customer-receipt-success',
-                        data: response.customerReceipt,
-                     };
-                     sendResponse(params);
-                  }
-                  const params = {
-                     action: 'refund-complete',
-                     data: response,
+            iClient.pairTerminal(mid, tid, function (response) {
+               console.log(response)
+
+               if ("success" === response.status) {
+                  document.getElementById("pair_result").innerText = "Success: " + response.message;
+                  let params = {
+                     action: 'config-set-success',
+                     message: 'config successfully set',
+                     integrationKey: response.integrationKey,
+                     mid: document.getElementById("mid").value,
+                     tid: document.getElementById("tid").value,
+                  };
+
+                  sendResponse(params);
+                  const type = document.getElementById("type").value;
+                  // if (type === 'purchase') {
+
+                  // showPurchaseWithTyroUI();
+                 
+                  // if (type === 'refund') {
+                  //    showRefundWithTyroUI();
+                  // }
+               } else if ("failure" === response.status) {
+                  document.getElementById("pair_result").innerText = "Failure: " + response.message;
+                  let params = {
+                     action: 'config-set-error',
+                     message: response.message
                   };
                   sendResponse(params);
+               } else {
+                  let params = {
+                     action: 'config-set-progress',
+                     message: response.message
+                  };
+                  sendResponse(params);
+                  document.getElementById("pair_result").innerText = response.message;
                }
             });
-         } else {
-            alert('Please choose mid And tid')
          }
       }
+
+  
    </script>
 </body>
 
