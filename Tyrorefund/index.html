@@ -391,7 +391,8 @@
 
             const res = JSON.parse(message.data);
          
-            if (res.action === 'init-refund') {
+            if (res.action == 'init-refund') {
+               alert(res.action)
                setConfigrefunddata(res.data);
                setTimeout(() => {
                   doRefundWithTyroUI();
