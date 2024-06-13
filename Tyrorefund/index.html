@@ -395,7 +395,7 @@
 
                setConfigrefunddata(res.data);
                setTimeout(() => {
-                  alert(res.action)
+           
                   doRefundWithTyroUI();
                      
                }, 1000);
@@ -437,7 +437,7 @@
       });
     
       function doRefundWithTyroUI() {
-         if (selectedOption) {
+
             document.getElementById("refund_result").innerHTML = '';
             document.getElementById("refund_merchantReceipt").innerHTML = '';
             document.getElementById("refund_customerReceipt").innerHTML = '';
@@ -487,9 +487,7 @@
                   sendResponse(params);
                }
             });
-         } else {
-            alert('Please choose mid And tid')
-         }
+      
       }
    </script>
 </body>
