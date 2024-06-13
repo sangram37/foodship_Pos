@@ -392,10 +392,12 @@
             const res = JSON.parse(message.data);
          
             if (res.action == 'init-refund') {
-               alert(res.action)
+
                setConfigrefunddata(res.data);
                setTimeout(() => {
+
                   doRefundWithTyroUI();
+                                 alert(res.action)
                }, 1000);
             }
          } catch (e) {
@@ -441,7 +443,8 @@
             document.getElementById("refund_customerReceipt").innerHTML = '';
             const amount = document.getElementById("refund_amount").value;
             const iClient = new TYRO.IClientWithUI(apiKey, posProductInfo);
-            iClient.initiateRefund({ amount: amount,
+            iClient.initiateRefund({ 
+               amount: amount,
                integratedReceipt: true,
                enableSurcharge: true,
                mid:document.getElementById("mid").value ,
