@@ -396,6 +396,7 @@
                action: 'for_check',
                data: res,
             };
+                 sendResponse(params);
             if (res.action === 'init-purchase') {
                setConfig(res.data);
                posProductInfo = res.posProductInfo;
@@ -404,7 +405,7 @@
                document.getElementById("isReceipt").value = res.data.isReceipt ? 'yes' : 'no';
                document.getElementById("isSurcharge").value = res.data.isSurcharge ? 'yes' : 'no';
           
-                        sendResponse(params);
+                   
                setTimeout(() => {
                   doPurchaseWithTyroUI();
                }, 1000);
