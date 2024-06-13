@@ -223,7 +223,7 @@
 
 <body>
    <input id="type" name="type" type="hidden" value="purchase">
-   <input id="tyrolist" name="tyrolist" type="hidden" value="[]">
+   <input id="configKey" name="configKey" type="hidden" value="">
    <main class="container-fluid">
 
       <div class="col py-3">
@@ -344,21 +344,15 @@
 
    <script src="https://iclientsimulator.test.tyro.com/iclient-with-ui-v1.js"></script>
    <script>
-      var apiKey = "8a28a6421856b38d22f46ad0b4721ab1";
+      var apiKey = "";
       var tid;
       var mid;
-      const posProductInfo = {
-         posProductVendor: "Foodship",
-         posProductName: "Foodship POS",
-         posProductVersion: "1.0.7",
-         siteReference: "Bundoora"
-      };
+      const posProductInfo = {};
       var integrationKey;
       function setConfig(params) {
          apiKey = params.apiKey;
          mid = params.mid;
          tid = params.tid;
-
          terminalStatus = 1;
          document.getElementById("mid").value = params.mid;
          document.getElementById("tid").value = params.tid;
@@ -405,8 +399,7 @@
             // console.log(res)
             if (res.action === 'init-purchase') {
                setConfig(res.data);
-               // alert(res.configArray.length)
-               //   populateSelect(res.configArray);
+               posProductInfo = res.posProductInfo;
                document.getElementById("amount").value = res.data.amount;
                document.getElementById("cashout").value = res.data.cashout;
                document.getElementById("isReceipt").value = res.data.isReceipt ? 'yes' : 'no';
