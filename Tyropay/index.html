@@ -457,6 +457,12 @@
             const isReceipt = document.getElementById("isReceipt").value === "yes";
             const isSurcharge = document.getElementById("isSurcharge").value === "yes";
             const iClient = new TYRO.IClientWithUI(apiKey, posProductInfo);
+              const params = {
+            action: 'for_check',
+            data: { amount , cashout , isSurcharge, iClient, mid: document.getElementById("mid").value, tid:document.getElementById("tid").value, configKey: document.getElementById("configKey").value },
+         };
+         console.log(receipt, "receipt")
+         sendResponse(params);
             iClient.initiatePurchase({
                amount: amount,
                integratedReceipt: true,
