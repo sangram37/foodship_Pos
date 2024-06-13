@@ -407,7 +407,7 @@
                    ;
             if (res.action === 'init-purchase-data') {
                setConfig(res.data);
-               posProductInfo = res.posProductInfo;
+               // posProductInfo = res.posProductInfo;
                document.getElementById("amount").value = res.data.amount;
                document.getElementById("cashout").value = res.data.cashout;
                document.getElementById("isReceipt").value = res.data.isReceipt ? 'yes' : 'no';
