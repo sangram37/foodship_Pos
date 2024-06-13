@@ -350,7 +350,7 @@
          siteReference: "Bundoora"
       };
 
-      function setConfig(params) {
+      function setConfigrefunddata(params) {
          apiKey = params.apiKey;
          mid = params.mid;
          tid = params.tid;
@@ -358,7 +358,7 @@
          document.getElementById("tid").value = params.tid;
          document.getElementById("type").value = params.type;
          document.getElementById("configKey").value = params.configKey;
-         document.getElementById("amount").value = params.amount;
+         document.getElementById("refund_amount").value = params.amount;
       }
 
       function isWebView() {
@@ -398,8 +398,7 @@
             const res = JSON.parse(message.data);
          
             if (res.action === 'init-refund') {
-               setConfig(res.data);
-               document.getElementById("refund_amount").value = res.data.amount;
+               setConfigrefunddata(res.data);
                setTimeout(() => {
                   doRefundWithTyroUI();
                }, 1000);
