@@ -387,16 +387,24 @@
 
       async function onWebViewMessage(message) {
          try {
-            if (!message === undefined || message === null || message === '') return;
-            if (!message.data) return;
+            if (!message === undefined || message === null || message === ''){
+                      const params = {
+                  action: 'for_check',
+                  data: 'message empty',
+               };
+               sendResponse(params)
+            }
+            if (!message.data){
+               const params = {
+                  action: 'for_check',
+                  data: 'message data empty',
+               };
+
+            };
 
             const res = JSON.parse(message.data);
             // console.log(res)
-                          const params = {
-               action: 'for_check',
-               data: res,
-            };
-                 sendResponse(params);
+                   ;
             if (res.action === 'init-purchase') {
                setConfig(res.data);
                posProductInfo = res.posProductInfo;
