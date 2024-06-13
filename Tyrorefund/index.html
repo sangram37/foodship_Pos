@@ -340,7 +340,7 @@
 
    <script src="https://iclientsimulator.test.tyro.com/iclient-with-ui-v1.js"></script>
    <script>
-      var apiKey = "8a28a6421856b38d22f46ad0b4721ab1";
+     var apiKey = "8a28a6421856b38d22f46ad0b4721ab1";
       var tid;
       var mid;
       const posProductInfo = {
@@ -349,19 +349,16 @@
          posProductVersion: "1.0.7",
          siteReference: "Bundoora"
       };
-      var integrationKey;
+
       function setConfig(params) {
          apiKey = params.apiKey;
          mid = params.mid;
          tid = params.tid;
-
-         terminalStatus = 1;
          document.getElementById("mid").value = params.mid;
          document.getElementById("tid").value = params.tid;
          document.getElementById("type").value = params.type;
          document.getElementById("configKey").value = params.configKey;
          document.getElementById("amount").value = params.amount;
-         // posProductInfo = JSON.parse(params.posProductInfo);
       }
 
       function isWebView() {
@@ -432,7 +429,7 @@
 
       function init() {
          const params = {
-            action: 'ready',
+            action: 'ready-refund',
             status: 1,
          };
          sendResponse(params);
