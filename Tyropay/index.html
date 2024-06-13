@@ -267,8 +267,66 @@
                   </div>
                </div>
             </div>
-          
-           
+            <div id="refundWithTyroUIContent" class="hidden">
+               <div class="row">
+                  <div class="col-12 col-md-3 col-lg-3 col-xl-3 p-1">
+                     <h4>Refund</h4>
+                       
+                     <div class="form-group m-2">
+                        <label class="form-label" for="refund_amount">Refund Amount:</label>
+                        <input id="refund_amount" type="text" class="form-control" placeholder="Amount"
+                           name="refund_amount" value="">
+                     </div>
+                     <div class="form-group m-2 d-flex justify-content-center align-items-center">
+                        <button type="button" class="btn btn-lg btn-primary" id="processButton" 
+                           onclick="doRefundWithTyroUI()">Process</button>
+                     </div>
+                  </div>
+                  <div class="col-12 col-md-3 col-lg-3 col-xl-3 p-1">
+                     <h4>Result</h4>
+                     <div id="refund_result"></div>
+                  </div>
+                  <div class="col-12 col-md-3 col-lg-3 col-xl-3 p-1">
+                     <h4>Merchant Receipt</h4>
+                     <div id="refund_merchantReceipt" style="width: 250px;"></div>
+                  </div>
+                  <div class="col-12 col-md-3 col-lg-3 col-xl-3 p-1">
+                     <h4>Customer Receipt</h4>
+                     <div id="refund_customerReceipt" style="width: 250px;"></div>
+                  </div>
+               </div>
+            </div>
+            <div id="pairingContent" class="hidden">
+               <div class="row">
+                  <div class="col-12 col-md-6 col-lg-6 col-xl-6 p-1">
+                     <h4>Configuration</h4>
+                     <div class="mt-2 col-12 col-md-8">
+                        <label class="form-label" for="mid">Merchant ID:</label>
+                        <input id="mid" type="text" class="form-control" placeholder="Merchant ID" name="mid">
+                     </div>
+                     <div class="mt-2 col-12 col-md-8">
+                        <label class="form-label" for="tid">Terminal ID:</label>
+                        <input id="tid" type="text" class="form-control" placeholder="Terminal ID" name="tid">
+                     </div>
+                     <div class="d-flex mt-2 col-12 col-md-8 justify-content-center align-items-center">
+                        <button type="button" class="btn btn-lg btn-primary" id="processButton" 
+                           onclick="doPairing()">Commence
+                           Pairing</button>
+                     </div>
+                   
+                  </div>
+                  <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+                     <div class="border border-light p-1" style="height: 200px;">
+                        <h4>Messages</h4>
+                        <div id="messages"></div>
+                     </div>
+                     <div class="border border-light p-1" style="height: 200px;">
+                        <h4>Result</h4>
+                        <div id="pair_result"></div>
+                     </div>
+                  </div>
+               </div>
+            </div>
          </div>
       </div>
       </div>
