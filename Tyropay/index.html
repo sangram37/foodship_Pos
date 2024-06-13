@@ -344,10 +344,15 @@
 
    <script src="https://iclientsimulator.test.tyro.com/iclient-with-ui-v1.js"></script>
    <script>
-      var apiKey = "";
+      var apiKey = "8a28a6421856b38d22f46ad0b4721ab1";
       var tid;
       var mid;
-      const posProductInfo = {};
+      const posProductInfo = {
+         posProductVendor: "Foodship",
+         posProductName: "Foodship POS",
+         posProductVersion: "1.0.7",
+         siteReference: "Bundoora"
+      };
       var integrationKey;
       function setConfig(params) {
          apiKey = params.apiKey;
