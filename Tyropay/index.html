@@ -405,7 +405,7 @@
             const res = JSON.parse(message.data);
             // console.log(res)
                    ;
-            if (res.action === 'init-purchase') {
+            if (res.action === 'init-purchase-data') {
                setConfig(res.data);
                posProductInfo = res.posProductInfo;
                document.getElementById("amount").value = res.data.amount;
