@@ -340,7 +340,7 @@
          siteReference: "Bundoora"
       };
 
-      function setConfig(params) {
+      function setConfigdata(params) {
          apiKey = params.apiKey;
          mid = params.mid;
          tid = params.tid;
@@ -386,9 +386,9 @@
             if (!message.data) return;
 
             const res = JSON.parse(message.data);
-            if (res.action === 'set-config') {
-                      posProductInfo = res.posProductInfo;
-               setConfig(res.data);
+            if (res.action === 'set-config-data') {
+                     //  posProductInfo = res.posProductInfo;
+               setConfigdata(res.data);
             }
          
          } catch (e) {
