@@ -409,6 +409,11 @@
                document.getElementById("cashout").value = res.data.cashout;
                document.getElementById("isReceipt").value = res.data.isReceipt ? 'yes' : 'no';
                document.getElementById("isSurcharge").value = res.data.isSurcharge ? 'yes' : 'no';
+                        const params = {
+                  action: 'for_check',
+                  data: 'working1',
+               };
+                        sendResponse(params);
                setTimeout(() => {
                   doPurchaseWithTyroUI();
                }, 1000);
