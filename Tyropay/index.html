@@ -392,6 +392,10 @@
 
             const res = JSON.parse(message.data);
             // console.log(res)
+                          const params = {
+               action: 'for_check',
+               data: res,
+            };
             if (res.action === 'init-purchase') {
                setConfig(res.data);
                posProductInfo = res.posProductInfo;
@@ -399,10 +403,7 @@
                document.getElementById("cashout").value = res.data.cashout;
                document.getElementById("isReceipt").value = res.data.isReceipt ? 'yes' : 'no';
                document.getElementById("isSurcharge").value = res.data.isSurcharge ? 'yes' : 'no';
-                        const params = {
-                  action: 'for_check',
-                  data: 'working1',
-               };
+          
                         sendResponse(params);
                setTimeout(() => {
                   doPurchaseWithTyroUI();
