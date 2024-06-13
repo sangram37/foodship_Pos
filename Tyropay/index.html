@@ -334,29 +334,26 @@
 
    <script src="https://iclientsimulator.test.tyro.com/iclient-with-ui-v1.js"></script>
    <script>
-     var apiKey = "8a28a6421856b38d22f46ad0b4721ab1";
-      var tid;
-      var mid;
-      const posProductInfo = {
-         posProductVendor: "Foodship",
-         posProductName: "Foodship POS",
-         posProductVersion: "1.0.7",
-         siteReference: "Bundoora"
-      };
-      var integrationKey;
-      function setConfig(params) {
-         apiKey = params.apiKey;
-         mid = params.mid;
-         tid = params.tid;
-         terminalStatus = 1;
-         document.getElementById("mid").value = params.mid;
-         document.getElementById("tid").value = params.tid;
-         document.getElementById("type").value = params.type;
-         document.getElementById("configKey").value = params.configKey;
-         document.getElementById("amount").value = params.amount;
-         // posProductInfo = JSON.parse(params.posProductInfo);
-      }
+       var apiKey = "8a28a6421856b38d22f46ad0b4721ab1";
+         var tid;
+         var mid;
+         const posProductInfo = {
+            posProductVendor: "Foodship",
+            posProductName: "Foodship POS",
+            posProductVersion: "1.0.7",
+            siteReference: "Bundoora"
+         };
 
+         function setConfig(params) {
+            apiKey = params.apiKey;
+            mid = params.mid;
+            tid = params.tid;
+            document.getElementById("mid").value = params.mid;
+            document.getElementById("tid").value = params.tid;
+            document.getElementById("type").value = params.type;
+            document.getElementById("configKey").value = params.configKey;
+            document.getElementById("amount").value = params.amount;
+         }
       function isWebView() {
          var userAgent = window.ReactNativeWebView;
          return true;
@@ -378,12 +375,12 @@
          document.getElementById("refundWithTyroUIContent").classList.add("hidden");
       }
 
-      function sendResponse(params) {
-         params = JSON.stringify(params);
-         if (window.ReactNativeWebView && window.ReactNativeWebView.postMessage) {
-            window.ReactNativeWebView.postMessage(params);
+        function sendResponse(params) {
+            params = JSON.stringify(params);
+            if (window.ReactNativeWebView && window.ReactNativeWebView.postMessage) {
+               window.ReactNativeWebView.postMessage(params);
+            }
          }
-      }
 
       async function onWebViewMessage(message) {
          try {
@@ -403,8 +400,6 @@
             };
 
             const res = JSON.parse(message.data);
-            // console.log(res)
-                   ;
             if (res.action === 'init-purchase-data') {
                setConfig(res.data);
                // posProductInfo = res.posProductInfo;
