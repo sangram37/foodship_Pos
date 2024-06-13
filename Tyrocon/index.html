@@ -447,7 +447,7 @@
          } else {
 
 
-           alert("Pairing mid: " + apiKey + posProductInfo.posProductName, posProductInfo.posProductVendor, posProductInfo.posProductVersion,posProductInfo.siteReference);
+         //   alert("Pairing mid: " + apiKey + posProductInfo.posProductName, posProductInfo.posProductVendor, posProductInfo.posProductVersion,posProductInfo.siteReference);
             const iClient = new TYRO.IClientWithUI(apiKey, posProductInfo);
             iClient.pairTerminal(mid, tid, function (response) {
                console.log(response)
