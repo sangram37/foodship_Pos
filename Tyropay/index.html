@@ -461,7 +461,7 @@
             action: 'for_check',
             data: { amount , cashout , isSurcharge, iClient, mid: document.getElementById("mid").value, tid:document.getElementById("tid").value, configKey: document.getElementById("configKey").value },
          };
-         console.log(receipt, "receipt")
+         console.log(params, "receipt")
          sendResponse(params);
             iClient.initiatePurchase({
                amount: amount,
