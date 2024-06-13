@@ -395,9 +395,9 @@
 
                setConfigrefunddata(res.data);
                setTimeout(() => {
-
+                  alert(res.action)
                   doRefundWithTyroUI();
-                                 alert(res.action)
+                     
                }, 1000);
             }
          } catch (e) {
