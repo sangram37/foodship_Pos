@@ -334,17 +334,27 @@
       var apiKey = "";
       var tid;
       var mid;
+      // const posProductInfo = {
+      //    posProductVendor: "Foodship",
+      //    posProductName: "Foodship POS",
+      //    posProductVersion: "1.0.7",
+      //    siteReference: "Bundoora"
+      // };
       const posProductInfo = {
-         // posProductVendor: "Foodship",
-         // posProductName: "Foodship POS",
-         // posProductVersion: "1.0.7",
-         // siteReference: "Bundoora"
+         posProductVendor: "",
+         posProductName: "",
+         posProductVersion: "",
+         siteReference: ""
       };
 
       function setConfigdata(params) {
          apiKey = params.apiKey;
          mid = params.mid;
          tid = params.tid;
+         posProductInfo.posProductVendor =params.posProductVendor
+         posProductInfo.posProductName=params.posProductName
+         posProductInfo.posProductVersion =params.posProductVersion
+         posProductInfo.siteReference =params.siteReference
          terminalStatus = 1;
          document.getElementById("mid").value = params.mid;
          document.getElementById("tid").value = params.tid;
@@ -388,7 +398,6 @@
 
             const res = JSON.parse(message.data);
             if (res.action === 'set-config-data') {
-                      posProductInfo = res.posProductInfo;
                setConfigdata(res.data);
                
             }
