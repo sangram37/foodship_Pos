@@ -217,9 +217,6 @@
       .show {
          display: block;
       }
-
-
-
    </style>
 </head>
 
@@ -237,9 +234,7 @@
             <!-- <div class="tablinks" onclick="showRefundWithTyroUI()">Refund</div> -->
 
          </div>
-               <!-- <div id="loader" class="loader">Please wait...</div> -->
          <div id="content">
-
             <div id="purchaseWithTyroUIContent" class="hidden">
                <input id="isReceipt" type="hidden" name="isReceipt" value="yes">
                <input id="isSurcharge" type="hidden" name="isSurcharge" value="yes">
@@ -255,7 +250,7 @@
                         <input id="cashout" type="text" class="form-control" placeholder="Cash out" name="cashout" disabled>
                      </div>
                      <div class="form-group m-2 d-flex justify-content-center align-items-center">
-                        <button type="button" class="btn btn-lg btn-primary" id="processButton" disabled
+                        <button type="button" class="btn btn-lg btn-primary" id="processButton" 
                            onclick="doPurchaseWithTyroUI()">Process</button>
                      </div>
                   </div>
@@ -263,14 +258,14 @@
                      <h4>Result</h4>
                      <div id="result"></div>
                   </div>
-                  <!-- <div class="col-12 col-md-3 col-lg-3 col-xl-3 p-1">
+                  <div class="col-12 col-md-3 col-lg-3 col-xl-3 p-1">
                      <h4>Merchant Receipt</h4>
                      <div id="merchantReceipt" style="width: 250px;"></div>
                   </div>
                   <div class="col-12 col-md-3 col-lg-3 col-xl-3 p-1">
                      <h4>Customer Receipt</h4>
                      <div id="customerReceipt" style="width: 250px;"></div>
-                  </div> -->
+                  </div>
                </div>
             </div>
             <div id="refundWithTyroUIContent" class="hidden">
@@ -368,7 +363,7 @@
          }
       function isWebView() {
          var userAgent = window.ReactNativeWebView;
-         return true;
+         return false;
       }
 
       document.addEventListener('DOMContentLoaded', function () {
