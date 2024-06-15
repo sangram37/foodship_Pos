@@ -12,92 +12,92 @@
          margin: 0;
          padding: 0;
       }
-
+   
       .hidden {
          display: none;
       }
-
+   
       .container-fluid {
          display: flex;
          /* flex-wrap: nowrap; */
          min-height: 100vh;
       }
-
+   
       .bg-dark {
          background-color: #343a40;
          color: white;
       }
-
+   
       .min-vh-100 {
          min-height: 100vh;
       }
-
+   
       .col-auto {
          flex: 0 0 auto;
          width: 250px;
          padding: 0;
       }
-
+   
       .col {
          flex: 1;
          padding: 1rem;
       }
-
+   
       .p-3 {
          padding: 1rem;
       }
-
+   
       .link-dark {
          color: white;
          text-decoration: none;
       }
-
+   
       .link-dark:hover {
          text-decoration: underline;
       }
-
+   
       .fw-bold {
          font-weight: bold;
       }
-
+   
       .nav {
          list-style: none;
          padding: 0;
       }
-
+   
       .nav-item {
          margin: 0.5rem 0;
       }
-
+   
       .nav-link {
          color: white;
          text-decoration: none;
          padding: 0.5rem;
          display: block;
       }
-
+   
       .nav-link:hover {
          background-color: #495057;
          color: white;
       }
-
+   
       .form-group {
          margin: 1rem 0;
          margin-left: 10px;
       }
-
+   
       .form-label {
          display: block;
          margin-bottom: 0.5rem;
       }
-
+   
       .form-control {
          width: 90%;
          padding: 0.5rem;
          border: 1px solid #ced4da;
          border-radius: 0.25rem;
       }
-
+   
       .btn {
          display: inline-block;
          font-weight: 400;
@@ -111,65 +111,65 @@
          border-radius: 0.25rem;
          text-decoration: none;
       }
-
+   
       .btn:disabled {
          background-color: #aaa;
          cursor: not-allowed;
       }
-
+   
       .btn:hover {
          background-color: #0056b3;
       }
-
+   
       .btn-lg {
          padding: 0.75rem 1.5rem;
          font-size: 1.25rem;
          border-radius: 0.3rem;
       }
-
+   
       .d-flex {
          display: flex;
       }
-
+   
       .justify-content-center {
          justify-content: center;
       }
-
+   
       .align-items-center {
          align-items: center;
       }
-
+   
       .mt-2 {
          margin-top: 0.5rem;
       }
-
+   
       .m-2 {
          margin: 0.5rem;
       }
-
+   
       .p-1 {
          padding: 0.5rem;
       }
-
+   
       .border {
          border: 1px solid #ced4da;
       }
-
+   
       .border-light {
          border-color: #f8f9fa !important;
       }
-
+   
       .preformatted {
          white-space: pre;
          background: #f8f9fa;
          padding: 1rem;
          border-radius: 0.25rem;
       }
-
+   
       h4 {
          margin-top: 0;
       }
-
+   
       .tab {
          overflow: hidden;
          border: 1px solid #ccc;
@@ -177,12 +177,12 @@
          border-radius: 5px;
          display: flex;
          gap: 10px;
-         justify-content:center;
+         justify-content: space-between;
          align-self: center;
          align-items: center;
          /* width: 30%; */
       }
-
+   
       /* Style the buttons inside the tab */
       .tab div {
          background-color: inherit;
@@ -193,26 +193,26 @@
          padding: 10px 20px;
          transition: 0.3s;
          border-radius: 5px 5px 0 0;
-
+   
       }
-
+   
       /* Change background color of buttons on hover */
       .tab div:hover {
          background-color: #ddd;
       }
-
+   
       /* Create an active/current tablink class */
       .tab div.active {
          background-color: #ccc;
       }
-
+   
       /* Style the tab content */
       .tabcontent {
          display: none;
          padding: 6px 12px;
          border-top: none;
       }
-
+   
       /* Show the specific tab content */
       .show {
          display: block;
@@ -278,7 +278,7 @@
                               name="refund_amount" value="" disabled>
                         </div>
                         <div class="form-group m-2 d-flex justify-content-center align-items-center">
-                           <button type="button" class="btn btn-lg btn-primary" id="processButton"
+                           <button type="button" class="btn btn-lg btn-primary" id="processButton"  disabled
                               onclick="doRefundWithTyroUI()">Process</button>
                         </div>
                      </div>
@@ -286,14 +286,14 @@
                         <h4>Result</h4>
                         <div id="refund_result"></div>
                      </div>
-                     <div class="col-12 col-md-3 col-lg-3 col-xl-3 p-1">
+                     <!-- <div class="col-12 col-md-3 col-lg-3 col-xl-3 p-1">
                         <h4>Merchant Receipt</h4>
                         <div id="refund_merchantReceipt" style="width: 250px;"></div>
                      </div>
                      <div class="col-12 col-md-3 col-lg-3 col-xl-3 p-1">
                         <h4>Customer Receipt</h4>
                         <div id="refund_customerReceipt" style="width: 250px;"></div>
-                     </div>
+                     </div> -->
                   </div>
                </div>
                <div id="pairingContent" class="hidden">
@@ -362,7 +362,7 @@
 
       function isWebView() {
          var userAgent = window.ReactNativeWebView;
-         return true;
+         return false;
       }
 
       document.addEventListener('DOMContentLoaded', function () {
