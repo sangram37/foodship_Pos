@@ -217,7 +217,7 @@
       .show {
          display: block;
       }
-          .loader {
+        .loader {
        position: fixed;
     top: 8%;
     left: 0;
@@ -246,10 +246,9 @@
             <!-- <div class="tablinks" onclick="showConfigurationPage()">Configuration</div> -->
             <div class="tablinks" onclick="showPurchaseWithTyroUI()">Purchase Production</div>
             <!-- <div class="tablinks" onclick="showRefundWithTyroUI()">Refund</div> -->
-                     <div class="tablinks" onclick="closeTyroUI()">Close</div>
 
          </div>
-                  <div id="loader" class="loader">Please wait...</div>
+            <div id="loader" class="loader">Please wait...</div>
          <div id="content">
             <div id="purchaseWithTyroUIContent" class="hidden">
                <input id="isReceipt" type="hidden" name="isReceipt" value="yes">
@@ -274,14 +273,14 @@
                      <h4>Result</h4>
                      <div id="result"></div>
                   </div>
-                  <!-- <div class="col-12 col-md-3 col-lg-3 col-xl-3 p-1">
+                  <div class="col-12 col-md-3 col-lg-3 col-xl-3 p-1">
                      <h4>Merchant Receipt</h4>
                      <div id="merchantReceipt" style="width: 250px;"></div>
                   </div>
                   <div class="col-12 col-md-3 col-lg-3 col-xl-3 p-1">
                      <h4>Customer Receipt</h4>
                      <div id="customerReceipt" style="width: 250px;"></div>
-                  </div> -->
+                  </div>
                </div>
             </div>
             <div id="refundWithTyroUIContent" class="hidden">
@@ -403,13 +402,7 @@
                window.ReactNativeWebView.postMessage(params);
             }
          }
-   function closeTyroUI() {
-      const params = {
-         action: 'for_close_tyro',
-         data: 'please try again',
-      };
-      sendResponse(params)
-   }
+
       async function onWebViewMessage(message) {
          try {
             if (!message === undefined || message === null || message === ''){
