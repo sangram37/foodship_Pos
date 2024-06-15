@@ -217,6 +217,23 @@
       .show {
          display: block;
       }
+     .loader {
+       position: fixed;
+    top: 8%;
+    left: 0;
+    width: 100%;
+    height: 92%;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    display: flex; /* Use Flexbox for centering */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    text-align: center;
+    z-index: 1000; /* Ensure it's on top */
+    padding: 10px;
+}
+
+
    </style>
 </head>
 
@@ -234,7 +251,9 @@
             <!-- <div class="tablinks" onclick="showRefundWithTyroUI()">Refund</div> -->
 
          </div>
+
          <div id="content">
+               <div id="loader" class="loader">Please wait...</div>
             <div id="purchaseWithTyroUIContent" class="hidden">
                <input id="isReceipt" type="hidden" name="isReceipt" value="yes">
                <input id="isSurcharge" type="hidden" name="isSurcharge" value="yes">
