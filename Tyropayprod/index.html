@@ -511,7 +511,7 @@
                         }
                      };
                      sendResponse(params);
-                  } else if (response.result === 'NOT STARTED') {
+                  } else if (response.result === 'NOT STARTED' || response.result === 'SYSTEM ERROR'|| response.result === 'DECLINED'|| response.result === 'CANCELLED'|| response.result === 'REVERSED'|| response.result === 'UNKNOWN' ) {
                      // alert('Please pair again')
                      let params = {
                         action: 'config-set-errors',
